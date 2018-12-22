@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderService } from './header.service';
 import { Router } from '@angular/router';
+import { User } from '../user/User';
 
 @Component({
   selector: 'header',

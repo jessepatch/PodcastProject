@@ -1,3 +1,11 @@
-<p>
-  login works!
-</p>
+<h1>Login</h1>
+
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Email" [(ngModel)]="user.email">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Password" [(ngModel)]="user.password">
+  </mat-form-field>
+</form>
