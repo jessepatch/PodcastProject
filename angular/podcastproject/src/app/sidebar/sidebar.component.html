@@ -1,0 +1,93 @@
+<section class="sidebar-right">
+  
+  <section class="profile-box" data-balloon="Profile &amp; Settings" data-balloon-pos="down">
+    <div class="center-user">
+      <img src="../../assets/play-button.png" height="50px" width="50px"> <!--User Image-->
+      <!--template bindings={}-->
+      <!--template bindings={}--><span class="name">Profile Name</span>
+      <!--template bindings={}-->
+    </div>
+  </section>
+  
+  
+  <section class="now-playing">
+    
+    <!-- <div class="right-gutter">
+    </div>
+    
+    <div class="now-playing-back">
+      <img class="disable-drag" height="300" width="300" src="../../assets/play-button.png">
+    </div>
+    
+    <img class="disable-select disable-drag art-shadow" src="../../assets/play-button.png">
+    
+    <a class="now-playing-link" href="#/podcast/">
+      <img class="disable-drag now-playing-art" src="../../assets/play-button.png">
+    </a> -->
+    
+    <div class="now-playing-title">
+      <span class="episode-title">HorizonPod</span>
+      <span class="podcast-title">Web Podcast App</span>
+    </div>
+  </section>
+  
+  <section class="player">
+    
+    <div class="toggle-full-screen fa-stack" data-balloon="Toggle Full-Screen Mode" data-balloon-pos="left">
+      <i class="fa fa-arrows-alt fa-stack-1x"></i>
+      <i class="fa fa-window-close-o fa-stack-1x"></i>
+      <i class="fa fa-circle fa-stack-2x"></i>
+    </div>
+    
+    <div class="timers disable-select">
+      <span class="current-time"></span>
+      <span class="duration"></span>
+    </div>
+
+
+    <audio controls [src]="episodeListService.nowPlaying"></audio>
+
+
+    <div class="volume-control">
+      <div class="volume-bar disable-select">
+        <div class="volume-bar-value" style="height: 50%;">
+        </div>
+      </div>
+    </div>
+    <div class="volume-back"></div>
+    <div class="volume-up" ng-click="volumeUp()"><i class="fa fa-fw fa-volume-up"></i></div>
+    <div class="volume-down" ng-click="volumeDown()"><i class="fa fa-fw fa-volume-down"></i></div>
+
+    
+    <div class="seek-bar">
+      <div class="seek-bar-complete" style="width: 0%;"></div>
+      <div class="buffer-bar"></div>
+    </div>
+
+    
+    <ul class="player-controls" style="margin-left:0px">
+      <li class="fa-stack">
+        <span class="playback-rate">1x</span>
+        <i class="fa fa-circle fa-stack-2x"></i>
+      </li>
+      <li class="fa-stack">
+        <i class="fa fa-backward fa-stack-1x" style="margin-left:-2px"></i>
+        <i class="fa fa-circle fa-stack-2x"></i>
+      </li>
+      <li class="play-button">
+        <!--template bindings={}--><i class="fa fa-play"></i>
+        <!--template bindings={}-->
+      </li>
+      <li class="fa-stack">
+        <i class="fa fa-forward fa-stack-1x" style="margin-left:2px"></i>
+        <i class="fa fa-circle fa-stack-2x"></i>
+      </li>
+      <li class="fa-stack" style="text-align:left">
+        <i class="fa fa-step-forward fa-stack-1x"></i>
+        <i class="fa fa-circle fa-stack-2x"></i>
+      </li>
+    </ul>
+  </section>
+  
+</section>
+

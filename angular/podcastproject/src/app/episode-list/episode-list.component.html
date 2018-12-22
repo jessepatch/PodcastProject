@@ -1,0 +1,5 @@
+<div class="episode-list" *ngFor="let PodcastEpisode of episodeList, let i = index">
+<p (click)="loadAudio(i)">
+  {{PodcastEpisode.title}}
+</p>
+</div>

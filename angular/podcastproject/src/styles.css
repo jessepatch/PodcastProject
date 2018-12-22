@@ -1,0 +1,71 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.sidebar-right {
+    background-color: #2f3d44;
+    position: absolute;
+    top: 40px;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    z-index: 15;
+    margin-left: 100px;
+    -webkit-box-shadow: -8px 0 12px -4px rgba(0,0,0,.3);
+    -moz-box-shadow: -8px 0 12px -4px rgba(0,0,0,.3);
+    box-shadow: -8px 0 12px -4px rgba(0,0,0,.3);
+    height: 100%;
+}
+
+.searchbar {
+    margin-top:40px;
+    background-color:white;
+    padding-left: 30px;
+    padding-top:18px;
+}
+
+.signup {
+  margin-top:400px;
+}
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+}
+  
+.example-container > * {
+    width: 100%;
+}
+
+.example-card {
+    max-width: 200px;
+}
+  
+.example-header-image {
+    background-size: cover;
+}
+
+.img-search-result {
+    width: 200px !important;
+    height: 200px !important;
+}
+
+.inline-card {
+    display:inline-block;
+}
+
+.maxwidth450px {
+    max-width: 200px;
+    box-sizing: content-box;
+    margin-bottom: 20px;
+    margin-right: 20px; 
+    max-height: 200px;
+}
+
+.card-body {
+    padding:0px !important;
+}
+
+/*
+.card {
+    width: calc(33.33% - 16px);
+}
+*/

@@ -1,0 +1,22 @@
+<div class="header1">
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Horizon Pod</a>
+  <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link active" href="#">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Sign up</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Log in</a>
+    </li>
+  </ul>
+</nav>
+</div>
+<div class="example-container searchbar">
+  <mat-form-field>
+      <span matPrefix><img src=..\..\assets\SearchIcon.png height="20px" width="20px">&nbsp;</span>
+    <input matInput [(ngModel)]="searchBody" placeholder="Search for a podcast" (keyup.enter)="search()">
+  </mat-form-field>
+</div>
