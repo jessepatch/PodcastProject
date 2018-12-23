@@ -15,6 +15,7 @@ import { SearchResultsComponent } from './search-results/search-results.componen
 import {MatCardModule} from '@angular/material/card';
 import { EpisodeListComponent } from './episode-list/episode-list.component';
 import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { LoginComponent } from './login/login.component';
     SignupComponent,
     SearchResultsComponent,
     EpisodeListComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

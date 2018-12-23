@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user/User';
 import { LoginService } from './login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'login',
@@ -9,7 +10,7 @@ import { LoginService } from './login.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginservice:LoginService) { }
+  constructor(private loginservice:LoginService, private router:Router) { }
 
   user:User = new User();
 
@@ -19,10 +20,11 @@ export class LoginComponent implements OnInit {
   public login(user:User) {
     this.loginservice.login(this.user).subscribe(
       data=>{
-
+        this.loginservice.setLoginUser(data);
+        this.router.navigateByUrl('/home');
       },
       error=>{
-        
+        console.log("Username and password do not match");
       }
     )
   }

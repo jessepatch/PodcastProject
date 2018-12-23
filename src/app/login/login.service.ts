@@ -7,12 +7,20 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginService {
 
+  private user:User;
+
   constructor(private http:HttpClient) { }
 
   public login(loginuser:User) {
-    return this.http.post<User>('http://8080/login', loginuser);
+    return this.http.post<User>('http://localhost:8080/login', loginuser);
   }
 
   public setLoginUser(user:User) {
+    this.user = user;
   }
+
+  public getLoginUser() {
+    return this.user;
+  }
+
 }

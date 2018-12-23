@@ -3,20 +3,20 @@
 
 <div class="example-container">
   <mat-form-field>
-    <input matInput type="text" placeholder="First Name">
+    <input matInput type="text" placeholder="First Name" [(ngModel)]="user.firstName">
   </mat-form-field>
   
   <mat-form-field>
-   <input matInput type="text" placeholder="Last Name">
+   <input matInput type="text" placeholder="Last Name" [(ngModel)]="user.lastName">
   </mat-form-field>
   
   <mat-form-field>
-    <input matInput type="email" placeholder="Email Address">
+    <input matInput type="email" placeholder="Email Address" [(ngModel)]="user.email">
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput type="password" placeholder="Password">
+    <input matInput type="password" placeholder="Password" [(ngModel)]="user.user_password">
   </mat-form-field>
-  <button mat-raised-button color="primary">Primary</button>
+  <button mat-raised-button color="primary" (click)="signupUser()">Submit</button>
 
 </div>
