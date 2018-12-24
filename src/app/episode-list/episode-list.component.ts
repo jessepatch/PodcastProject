@@ -3,6 +3,7 @@ import { SearchResultsService } from '../search-results/search-results.service';
 import { PodcastEpisode } from '../podcast/podcastEpisode';
 import { EpisodeListService } from './episode-list.service';
 import { SidebarService } from '../sidebar/sidebar.service';
+import { Podcast } from '../podcast/Podcast';
 
 @Component({
   selector: 'episode-list',
@@ -17,6 +18,7 @@ export class EpisodeListComponent implements OnInit {
   }
 
   episodeList:PodcastEpisode[] = this.searchresultsService.rssfeed.rss.channel.item;
+  podcastTitle:Podcast = this.searchresultsService.podcast;
 
   @Output() loadAudioPlayer = new EventEmitter();
 
@@ -26,5 +28,9 @@ export class EpisodeListComponent implements OnInit {
 
     //this.loadAudioPlayer.emit(this.episodeList[index].enclosure.url);
     this.episodelistservice.loadAudio(this.episodeList[index].enclosure.url);
+  }
+
+  public subscribe() {
+
   }
 }

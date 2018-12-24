@@ -24,6 +24,7 @@ export class SearchResultsComponent implements OnInit {
       data => {
         console.log(data);
         this.searchresultsService.setEpisodeList(data);
+        this.searchresultsService.setPodcast(this.searchPodcasts[index]);
         this.router.navigateByUrl('/episodelist');
        },
        error => {

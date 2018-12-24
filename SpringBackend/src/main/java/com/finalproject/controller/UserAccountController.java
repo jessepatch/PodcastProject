@@ -59,9 +59,7 @@ public class UserAccountController {
 			method=RequestMethod.POST
 			)
 	public void signup(@RequestBody UserAccount userAccount) {
-		this.userAccountService.save(userAccount);
-		System.out.println(userAccount.getUser_password());
-	
+		this.userAccountService.save(userAccount);	
 	}
 	
 	
