@@ -19,7 +19,7 @@ public class UserAccountService {
 
 	public void save(UserAccount userAccount) {
 		userAccountRepository.save(userAccount);
-		System.out.println(userAccount.getPassword());
+		System.out.println(userAccount.getUser_password());
 	}
 
 }

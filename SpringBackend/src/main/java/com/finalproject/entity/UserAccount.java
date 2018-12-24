@@ -37,10 +37,10 @@ public class UserAccount {
 		public void setLastName(String last_name) {
 			this.last_name = last_name;
 		}
-		public String getPassword() {
+		public String getUser_password() {
 			return user_password;
 		}
-		public void setPassword(String user_password) {
+		public void setUser_password(String user_password) {
 			this.user_password = user_password;
 		}
 		

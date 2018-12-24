@@ -49,7 +49,7 @@ public class UserAccountController {
 	@RequestMapping(value="/login", produces=MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<UserAccount> logIn(@RequestBody UserAccount userAccount){
-		UserAccount tempUserAccount = userAccountService.login(userAccount.getEmail(), userAccount.getPassword());
+		UserAccount tempUserAccount = userAccountService.login(userAccount.getEmail(), userAccount.getUser_password());
 		return new ResponseEntity<>(tempUserAccount, HttpStatus.OK); 
 	}
 	
@@ -60,7 +60,7 @@ public class UserAccountController {
 			)
 	public void signup(@RequestBody UserAccount userAccount) {
 		this.userAccountService.save(userAccount);
-		System.out.println(userAccount.getPassword());
+		System.out.println(userAccount.getUser_password());
 	
 	}
 	
