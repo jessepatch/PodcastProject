@@ -11,8 +11,8 @@ export class LoginService {
 
   constructor(private http:HttpClient) { }
 
-  public login(loginuser:User) {
-    return this.http.post<User>('http://localhost:8080/login', loginuser);
+  public login(loginUser:User) {
+    return this.http.post<User>('http://localhost:8080/login', loginUser);
   }
 
   public setLoginUser(user:User) {

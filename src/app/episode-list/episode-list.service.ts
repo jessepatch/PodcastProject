@@ -22,7 +22,7 @@ export class EpisodeListService {
 
   public subscribe(podcast:Podcast):Observable<any> {
     let podcastSubscription = {};
-    podcastSubscription['email'] = this.loginService.getLoginUser();
+    podcastSubscription['email'] = this.loginService.getLoginUser().email;
     podcastSubscription['podcast_name'] = podcast.collectionName;
     podcastSubscription['img_url'] = podcast.artworkUrl600;
     podcastSubscription['feed_url'] = podcast.feedUrl;
