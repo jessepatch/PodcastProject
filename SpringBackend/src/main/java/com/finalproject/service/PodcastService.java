@@ -15,4 +15,8 @@ public class PodcastService {
 	public void save(Podcast podcast) {
 		podcastRepository.save(podcast);
 	}
+	
+	public Podcast[] getSubscriptions(String email) {
+		return podcastRepository.getSubscriptions(email);
+	}
 }

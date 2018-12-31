@@ -31,7 +31,8 @@ public class UserAccountController {
 
 	@RequestMapping(value="/rss/podcast", 
 			produces=MediaType.APPLICATION_JSON_VALUE, 
-			method = RequestMethod.GET)
+			method = RequestMethod.GET
+			)
 	public  ResponseEntity<String> fetchRSSFeed(String feedUrl) {
 		
 		RestTemplate restTemplate = new RestTemplate();
@@ -45,8 +46,10 @@ public class UserAccountController {
 	}
 	
 	
-	
-	@RequestMapping(value="/login", produces=MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+	@RequestMapping(value="/login", 
+			produces=MediaType.APPLICATION_JSON_VALUE, 
+			method = RequestMethod.POST
+			)
 	@ResponseBody
 	public ResponseEntity<UserAccount> logIn(@RequestBody UserAccount userAccount){
 		UserAccount tempUserAccount = userAccountService.login(userAccount.getEmail(), userAccount.getUser_password());

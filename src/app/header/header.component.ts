@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderService } from './header.service';
 import { Router } from '@angular/router';
-import { User } from '../user/User';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'header',
@@ -14,7 +14,7 @@ path:string = 'https://itunes.apple.com/search?entity=podcast&term=';
 
 searchBody:string;
 
-  constructor(private headerService:HeaderService, private router:Router) { }
+  constructor(private headerService:HeaderService, private router:Router, private loginService:LoginService) { }
 
   ngOnInit() {
   }
@@ -30,6 +30,11 @@ searchBody:string;
       
      } 
     )
+  }
+
+  public logout() {
+    this.loginService.setLoginUser(null);
+    this.router.navigateByUrl('/');
   }
 
 }

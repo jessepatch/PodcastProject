@@ -1,7 +1,9 @@
 package com.finalproject.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,5 +26,15 @@ public class PodcastController {
 			)
 	public void subscribe(@RequestBody Podcast podcast) {
 		this.podcastService.save(podcast);	
+	}
+	
+	@RequestMapping(value="/home",
+			consumes=MediaType.APPLICATION_JSON_VALUE,
+			produces=MediaType.APPLICATION_JSON_VALUE,
+			method=RequestMethod.GET
+			)
+	public ResponseEntity<Podcast[]> home(@RequestBody String email) {
+		Podcast[] subscribedPodcasts = podcastService.getSubscriptions(email);
+		return new ResponseEntity<>(subscribedPodcasts, HttpStatus.OK);
 	}
 }
