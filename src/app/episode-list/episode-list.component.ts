@@ -2,7 +2,6 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SearchResultsService } from '../search-results/search-results.service';
 import { PodcastEpisode } from '../podcast/podcastEpisode';
 import { EpisodeListService } from './episode-list.service';
-import { SidebarService } from '../sidebar/sidebar.service';
 import { Podcast } from '../podcast/Podcast';
 
 @Component({
@@ -12,15 +11,15 @@ import { Podcast } from '../podcast/Podcast';
 })
 export class EpisodeListComponent implements OnInit {
 
-  constructor(private searchresultsService:SearchResultsService, private episodelistservice:EpisodeListService, private sidebarservice:SidebarService) { }
+  constructor(private searchresultsService:SearchResultsService, private episodelistservice:EpisodeListService) { }
 
   ngOnInit() {
   }
 
   episodeList:PodcastEpisode[] = this.searchresultsService.rssfeed.rss.channel.item;
-  podcastTitle:Podcast = this.searchresultsService.podcast;
+  podcast:Podcast = this.searchresultsService.podcast;
 
-  @Output() loadAudioPlayer = new EventEmitter();
+  //@Output() loadAudioPlayer = new EventEmitter();
 
   public loadAudio(index:number) {
     console.log("Step 1: loadaudio in episodelist component");
@@ -30,7 +29,7 @@ export class EpisodeListComponent implements OnInit {
     this.episodelistservice.loadAudio(this.episodeList[index].enclosure.url);
   }
 
-  public subscribe() {
-
+  public subscribe(podcast:Podcast) {
+    this.episodelistservice.subscribe(this.podcast);
   }
 }

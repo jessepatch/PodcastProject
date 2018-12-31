@@ -15,8 +15,6 @@ export class HeaderService {
     
   }
 
-  
-
   public search(searchBody:string):Observable<PodcastAPI> {
     let getParams:HttpParams = new HttpParams();
     getParams = getParams.append('entity', 'podcast').append('term', searchBody);

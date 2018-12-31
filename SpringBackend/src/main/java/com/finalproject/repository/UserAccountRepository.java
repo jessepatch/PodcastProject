@@ -13,5 +13,4 @@ public interface UserAccountRepository extends JpaRepository <UserAccount, Strin
 	
 	@Query("Select U from UserAccount U where U.email = ?1 and U.user_password = ?2")
 	UserAccount login(String email, String user_password);
-
 }
