@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SearchResultsService } from '../search-results/search-results.service';
-import { PodcastEpisode } from '../podcast/podcastEpisode';
+import { PodcastEpisode } from '../podcast/PodcastEpisode';
 import { EpisodeListService } from './episode-list.service';
 import { Podcast } from '../podcast/Podcast';
 
@@ -41,6 +41,6 @@ export class EpisodeListComponent implements OnInit {
 
     }
   )
-    
+
   }
 }
