@@ -21,6 +21,8 @@ export class EpisodeListComponent implements OnInit {
 
   //@Output() loadAudioPlayer = new EventEmitter();
 
+  subscribed:boolean;
+
   public loadAudio(index:number) {
     console.log("Step 1: loadaudio in episodelist component");
     console.log(this.episodeList[index].enclosure.url);
@@ -29,7 +31,16 @@ export class EpisodeListComponent implements OnInit {
     this.episodelistservice.loadAudio(this.episodeList[index].enclosure.url);
   }
 
-  public subscribe(podcast:Podcast) {
-    this.episodelistservice.subscribe(this.podcast);
+  public subscribe() {
+    this.episodelistservice.subscribe(this.podcast).subscribe(
+    data=>{
+      this.subscribed = true;
+      console.log("Subscribed to podcast");
+    },
+    error=>{
+
+    }
+  )
+    
   }
 }

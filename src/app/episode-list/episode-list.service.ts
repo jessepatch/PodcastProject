@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Podcast } from '../podcast/Podcast';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { LoginService } from '../login/login.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EpisodeListService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private loginService:LoginService) { }
 
   nowPlaying:string = null;
 
@@ -18,7 +20,12 @@ export class EpisodeListService {
     this.nowPlaying = url;
   }
 
-  public subscribe(podcast:Podcast) {
-    return this.http.post('http://localhost:8080/subscribe', podcast)
+  public subscribe(podcast:Podcast):Observable<any> {
+    let podcastSubscription = {};
+    podcastSubscription['email'] = this.loginService.getLoginUser();
+    podcastSubscription['podcast_name'] = podcast.collectionName;
+    podcastSubscription['img_url'] = podcast.artworkUrl600;
+    podcastSubscription['feed_url'] = podcast.feedUrl;
+    return this.http.post('http://localhost:8080/subscribe', podcastSubscription);
   }
 }

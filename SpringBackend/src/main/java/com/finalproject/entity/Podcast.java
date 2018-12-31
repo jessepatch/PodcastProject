@@ -6,12 +6,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="podcasts")
+@Table(name="podcast_subscriptions")
 public class Podcast {
 		
 		    @Id
 			@Column(name="id")
-			private String id;
+			private int id;
 			@Column(name="email")
 			private String email;
 			@Column(name="podcast_name")
@@ -21,10 +21,10 @@ public class Podcast {
 			@Column (name="feed_url")
 			private String feed_url;
 			
-			public String getId() {
+			public int getId() {
 				return id;
 			}
-			public void setId(String id) {
+			public void setId(int id) {
 				this.id = id;
 			}
 			public String getEmail() {
