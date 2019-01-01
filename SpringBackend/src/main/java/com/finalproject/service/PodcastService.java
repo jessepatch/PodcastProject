@@ -1,5 +1,7 @@
 package com.finalproject.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,7 @@ public class PodcastService {
 		podcastRepository.save(podcast);
 	}
 	
-	public Podcast[] getSubscriptions(String email) {
+	public List<Podcast> getSubscriptions(String email) {
 		return podcastRepository.getSubscriptions(email);
 	}
 }

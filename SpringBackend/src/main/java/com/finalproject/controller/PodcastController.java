@@ -1,5 +1,7 @@
 package com.finalproject.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -33,8 +35,8 @@ public class PodcastController {
 			produces=MediaType.APPLICATION_JSON_VALUE,
 			method=RequestMethod.GET
 			)
-	public ResponseEntity<Podcast[]> home(@RequestBody String email) {
-		Podcast[] subscribedPodcasts = podcastService.getSubscriptions(email);
-		return new ResponseEntity<>(subscribedPodcasts, HttpStatus.OK);
+	public ResponseEntity<List<Podcast>> home(@RequestBody String email) {
+		List<Podcast> subscribedPodcasts = podcastService.getSubscriptions(email);
+		return new ResponseEntity<List<Podcast>>(subscribedPodcasts, HttpStatus.OK);
 	}
 }
