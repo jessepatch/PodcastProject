@@ -18,6 +18,10 @@ public class PodcastService {
 		podcastRepository.save(podcast);
 	}
 	
+	public void delete(Podcast podcast) {
+		podcastRepository.delete(podcast);
+	}
+	
 	public List<Podcast> getSubscriptions(String email) {
 		return podcastRepository.getSubscriptions(email);
 	}

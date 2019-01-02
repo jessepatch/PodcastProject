@@ -42,15 +42,19 @@ export class EpisodeListComponent implements OnInit {
 
     }
   )
-  this.homeService.getSubscriptions().subscribe(
-    data=>{
-      console.log(data);
-      this.homeService.setSubscribedPodcasts(data);
-    },
-    error=>{
-      console.log("error retieving subscriptions");
-    }
-  )
+  
 
+  }
+
+  public unsubscribe() {
+    this.episodelistservice.unsubscribe(this.podcast).subscribe(
+      data=>{
+        this.subscribed = false;
+        console.log("Unsubsribed to podcast");
+      },
+      error=>{
+
+      }
+    )
   }
 }
