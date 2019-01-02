@@ -11,7 +11,7 @@ import com.finalproject.entity.Podcast;
 @Repository
 public interface PodcastRepository extends JpaRepository <Podcast, String>{
 	
-	@Query("Select U from podcast_subscriptions U where U.email = ?1")
+	@Query("Select U from Podcast U where U.email = ?1")
 	List<Podcast> getSubscriptions(String email);
 		
 }

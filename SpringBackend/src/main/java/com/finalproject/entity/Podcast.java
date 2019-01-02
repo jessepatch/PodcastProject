@@ -14,12 +14,12 @@ public class Podcast {
 			private int id;
 			@Column(name="email")
 			private String email;
-			@Column(name="podcast_name")
-			private String podcast_name;
-			@Column (name="img_url")
-			private String img_url;
+			@Column(name="collection_name")
+			private String collectionName;
+			@Column (name="artwork_url600")
+			private String artworkUrl600;
 			@Column (name="feed_url")
-			private String feed_url;
+			private String feedUrl;
 			
 			public int getId() {
 				return id;
@@ -33,23 +33,28 @@ public class Podcast {
 			public void setEmail(String email) {
 				this.email = email;
 			}
-			public String getPodcast_name() {
-				return podcast_name;
+			public String getCollectionName() {
+				return collectionName;
 			}
-			public void setPodcast_name(String podcast_name) {
-				this.podcast_name = podcast_name;
+			public void setCollectionName(String collectionName) {
+				this.collectionName = collectionName;
 			}
-			public String getImg_url() {
-				return img_url;
+			public String getArtworkUrl600() {
+				return artworkUrl600;
 			}
-			public void setImg_url(String img_url) {
-				this.img_url = img_url;
+			public void setArtworkUrl600(String artworkUrl600) {
+				this.artworkUrl600 = artworkUrl600;
 			}
-			public String getFeed_url() {
-				return feed_url;
+			public String getFeedUrl() {
+				return feedUrl;
 			}
-			public void setFeed_url(String feed_url) {
-				this.feed_url = feed_url;
+			public void setFeedUrl(String feedUrl) {
+				this.feedUrl = feedUrl;
+			}
+			
+			@Override
+			public String toString() {
+				return this.collectionName;
 			}
 	
 }

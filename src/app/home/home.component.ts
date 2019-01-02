@@ -20,14 +20,6 @@ export class HomeComponent implements OnInit {
     if(this.loginService.getLoginUser() == null) {
       this.router.navigateByUrl('/');
     }
-    this.homeService.getSubscriptions().subscribe(
-      data=>{
-        this.homeService.setSubscribedPodcasts(data);
-      },
-      error=>{
-        console.log("error retieving subscriptions");
-      }
-    )
   }
 
   user:User = this.loginService.getLoginUser();

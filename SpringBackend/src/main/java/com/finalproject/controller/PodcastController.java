@@ -31,12 +31,12 @@ public class PodcastController {
 	}
 	
 	@RequestMapping(value="/home",
-			consumes=MediaType.APPLICATION_JSON_VALUE,
 			produces=MediaType.APPLICATION_JSON_VALUE,
 			method=RequestMethod.GET
 			)
-	public ResponseEntity<List<Podcast>> home(@RequestBody String email) {
+	public ResponseEntity<List<Podcast>> home(String email) {
 		List<Podcast> subscribedPodcasts = podcastService.getSubscriptions(email);
+		System.out.println("return subscribed podcasts" + subscribedPodcasts.get(0).toString());
 		return new ResponseEntity<List<Podcast>>(subscribedPodcasts, HttpStatus.OK);
 	}
 }

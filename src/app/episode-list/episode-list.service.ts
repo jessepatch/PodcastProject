@@ -23,9 +23,9 @@ export class EpisodeListService {
   public subscribe(podcast:Podcast):Observable<any> {
     let podcastSubscription = {};
     podcastSubscription['email'] = this.loginService.getLoginUser().email;
-    podcastSubscription['podcast_name'] = podcast.collectionName;
-    podcastSubscription['img_url'] = podcast.artworkUrl600;
-    podcastSubscription['feed_url'] = podcast.feedUrl;
+    podcastSubscription['collectionName'] = podcast.collectionName;
+    podcastSubscription['artworkUrl600'] = podcast.artworkUrl600;
+    podcastSubscription['feedUrl'] = podcast.feedUrl;
     return this.http.post('http://localhost:8080/subscribe', podcastSubscription);
   }
 }

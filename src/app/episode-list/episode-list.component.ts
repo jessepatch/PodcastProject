@@ -3,6 +3,7 @@ import { SearchResultsService } from '../search-results/search-results.service';
 import { PodcastEpisode } from '../podcast/PodcastEpisode';
 import { EpisodeListService } from './episode-list.service';
 import { Podcast } from '../podcast/Podcast';
+import { HomeService } from '../home/home.service';
 
 @Component({
   selector: 'episode-list',
@@ -11,7 +12,7 @@ import { Podcast } from '../podcast/Podcast';
 })
 export class EpisodeListComponent implements OnInit {
 
-  constructor(private searchresultsService:SearchResultsService, private episodelistservice:EpisodeListService) { }
+  constructor(private searchresultsService:SearchResultsService, private episodelistservice:EpisodeListService, private homeService:HomeService) { }
 
   ngOnInit() {
   }
@@ -39,6 +40,15 @@ export class EpisodeListComponent implements OnInit {
     },
     error=>{
 
+    }
+  )
+  this.homeService.getSubscriptions().subscribe(
+    data=>{
+      console.log(data);
+      this.homeService.setSubscribedPodcasts(data);
+    },
+    error=>{
+      console.log("error retieving subscriptions");
     }
   )
 
