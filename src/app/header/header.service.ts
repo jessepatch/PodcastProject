@@ -17,7 +17,9 @@ export class HeaderService {
 
   public search(searchBody:string):Observable<PodcastAPI> {
     let getParams:HttpParams = new HttpParams();
-    getParams = getParams.append('entity', 'podcast').append('term', searchBody);
+    getParams = getParams
+    .append('entity', 'podcast')
+    .append('term', searchBody);
     return this.http.get<PodcastAPI>('https://itunes.apple.com/search', {params:getParams});
   }
 

@@ -4,6 +4,7 @@ import { PodcastEpisode } from '../podcast/PodcastEpisode';
 import { EpisodeListService } from './episode-list.service';
 import { Podcast } from '../podcast/Podcast';
 import { HomeService } from '../home/home.service';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'episode-list',
@@ -12,9 +13,17 @@ import { HomeService } from '../home/home.service';
 })
 export class EpisodeListComponent implements OnInit {
 
-  constructor(private searchresultsService:SearchResultsService, private episodelistservice:EpisodeListService, private homeService:HomeService) { }
+  constructor(private searchresultsService:SearchResultsService, private episodelistservice:EpisodeListService, private homeService:HomeService, private loginService:LoginService) { }
 
   ngOnInit() {
+    this.subscribed = false;
+    if(this.loginService.getLoginUser() != null) {
+      for(let i:number = 0; i<this.homeService.subscribedPodcasts.length; i++) {
+       if(this.homeService.subscribedPodcasts[i].collectionName == this.podcast.collectionName) {
+          this.subscribed = true;
+        }
+      }
+    }
   }
 
   episodeList:PodcastEpisode[] = this.searchresultsService.rssfeed.rss.channel.item;
@@ -42,8 +51,6 @@ export class EpisodeListComponent implements OnInit {
 
     }
   )
-  
-
   }
 
   public unsubscribe() {

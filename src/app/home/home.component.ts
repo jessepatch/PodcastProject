@@ -15,7 +15,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private loginService:LoginService, private router:Router, private homeService:HomeService, private searchResultsService:SearchResultsService) { }
 
-  subscribedPodcasts:Podcast[] = this.homeService.subscribedPodcasts;
+  user:User = this.loginService.getLoginUser();
+
 
   ngOnInit() {
     if(this.loginService.getLoginUser() == null) {
@@ -30,17 +31,15 @@ export class HomeComponent implements OnInit {
         console.log("error retieving subscriptions");
       }
     )
-    console.log('subscribedPodcasts', this.subscribedPodcasts)
+    console.log('subscribedPodcasts', this.homeService.subscribedPodcasts)
   }
 
-  user:User = this.loginService.getLoginUser();
-
   public episodeList(index:number) {
-    this.searchResultsService.episodeList(this.subscribedPodcasts[index].feedUrl).subscribe(
+    this.searchResultsService.episodeList(this.homeService.subscribedPodcasts[index].feedUrl).subscribe(
       data => {
         console.log(data);
         this.searchResultsService.setEpisodeList(data);
-        this.searchResultsService.setPodcast(this.subscribedPodcasts[index]);
+        this.searchResultsService.setPodcast(this.homeService.subscribedPodcasts[index]);
         this.router.navigateByUrl('/episodelist');
        },
        error => {

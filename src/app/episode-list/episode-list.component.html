@@ -1,5 +1,6 @@
-<button mat-raised-button *ngIf="!subscribed" color="primary" (click)="subscribe()">Subscribe</button>
+<button mat-raised-button *ngIf="!subscribed && loginService.getLoginUser() != null" color="primary" (click)="subscribe()">Subscribe</button>
 <button mat-raised-button *ngIf="subscribed" color="primary" (click)="unsubscribe()">Unsubscribe</button>
+<button mat-raised-button *ngIf="loginService.getLoginUser() == null" color="primary" [routerLink]="['']">Make an account to subscribe</button>
 <div class="episode-list" *ngFor="let PodcastEpisode of episodeList, let i = index">
 <p (click)="loadAudio(i)">
   {{PodcastEpisode.title}}
