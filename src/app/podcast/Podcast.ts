@@ -41,6 +41,7 @@ export class Podcast {
     artworkUrl600: string;
     genreIds: string[];
     genres: string[];
+    id:string;
 
     public toString(): string {
         return this.collectionName;

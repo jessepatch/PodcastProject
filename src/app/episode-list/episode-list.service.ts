@@ -29,12 +29,7 @@ export class EpisodeListService {
     return this.http.post('http://localhost:8080/subscribe', podcastSubscription);
   }
 
-  public unsubscribe(podcast:Podcast):Observable<any> {
-    let podcastSubscription = {};
-    podcastSubscription['email'] = this.loginService.getLoginUser().email;
-    podcastSubscription['collectionName'] = podcast.collectionName;
-    podcastSubscription['artworkUrl600'] = podcast.artworkUrl600;
-    podcastSubscription['feedUrl'] = podcast.feedUrl;
-    return this.http.post('http://localhost:8080/unsubscribe', podcast);
+  public unsubscribe(id:string):Observable<any> {
+    return this.http.post('http://localhost:8080/unsubscribe', id);
   }
 }

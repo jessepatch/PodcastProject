@@ -18,8 +18,9 @@ public class PodcastService {
 		podcastRepository.save(podcast);
 	}
 	
-	public void delete(Podcast podcast) {
-		podcastRepository.delete(podcast);
+	public void delete(String id) {
+		int tempInt = Integer.parseInt(id);
+		podcastRepository.delete(tempInt);
 	}
 	
 	public List<Podcast> getSubscriptions(String email) {

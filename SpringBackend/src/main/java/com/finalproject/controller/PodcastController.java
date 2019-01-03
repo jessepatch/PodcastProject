@@ -31,11 +31,10 @@ public class PodcastController {
 	}
 	
 	@RequestMapping(value="/unsubscribe",
-			consumes=MediaType.APPLICATION_JSON_VALUE,
 			method=RequestMethod.POST
 			)
-	public void unsubscribe(@RequestBody Podcast podcast) {
-		this.podcastService.delete(podcast);
+	public void unsubscribe(@RequestBody String id) {
+		this.podcastService.delete(id);
 	}
 	
 	@RequestMapping(value="/home",

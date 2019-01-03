@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.finalproject.entity.Podcast;
 
 @Repository
-public interface PodcastRepository extends JpaRepository <Podcast, String>{
+public interface PodcastRepository extends JpaRepository <Podcast, Integer>{
 	
 	@Query("Select U from Podcast U where U.email = ?1")
 	List<Podcast> getSubscriptions(String email);

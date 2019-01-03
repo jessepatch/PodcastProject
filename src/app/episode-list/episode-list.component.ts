@@ -54,10 +54,10 @@ export class EpisodeListComponent implements OnInit {
   }
 
   public unsubscribe() {
-    this.episodelistservice.unsubscribe(this.podcast).subscribe(
+    this.episodelistservice.unsubscribe(this.searchresultsService.podcast.id).subscribe(
       data=>{
         this.subscribed = false;
-        console.log("Unsubsribed to podcast");
+        console.log("Unsubscribed to podcast");
       },
       error=>{
 
