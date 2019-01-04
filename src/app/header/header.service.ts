@@ -9,13 +9,15 @@ import { Podcast, PodcastAPI } from '../podcast/Podcast';
 export class HeaderService {
 
   tempsearchPodcasts:PodcastAPI;
-  searchPodcasts:Podcast[]
+  searchPodcasts:Podcast[];
+  searchBody:string;
 
   constructor(private http:HttpClient) { 
     
   }
 
   public search(searchBody:string):Observable<PodcastAPI> {
+    this.searchBody = searchBody;
     let getParams:HttpParams = new HttpParams();
     getParams = getParams
     .append('entity', 'podcast')

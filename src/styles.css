@@ -6,7 +6,7 @@
     top: 40px;
     bottom: 0;
     right: 0;
-    width: 300px;
+    width: 25%;
     z-index: 15;
     margin-left: 100px;
     -webkit-box-shadow: -8px 0 12px -4px rgba(0,0,0,.3);
@@ -58,12 +58,26 @@
     margin-bottom: 20px;
     margin-right: 20px; 
     max-height: 200px;
+    margin-bottom:55px;
+}
+
+.card-title {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width:200px;
+    text-align: center;
 }
 
 .card-body {
     padding:0px !important;
 }
 
+html {
+    max-width: 73%;
+    box-sizing:border-box;
+    margin:10px;
+}
 /*
 .card {
     width: calc(33.33% - 16px);

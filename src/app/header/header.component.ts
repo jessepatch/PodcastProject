@@ -16,6 +16,8 @@ searchBody:string;
 
   constructor(private headerService:HeaderService, private router:Router, private loginService:LoginService) { }
 
+  
+
   ngOnInit() {
   }
 
