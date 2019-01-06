@@ -4,7 +4,7 @@
     <div class="center-user">
       <img src="../../assets/play-button.png" height="50px" width="50px"> <!--User Image-->
       <!--template bindings={}-->
-      <!--template bindings={}--><span class="name">Profile Name</span>
+      <!--template bindings={}--><span *ngIf="this.loginService.getLoginUser() != null" class="name">Welcome, {{this.loginService.getLoginUser().firstName}}</span>
       <!--template bindings={}-->
     </div>
   </section>
@@ -24,10 +24,12 @@
     <a class="now-playing-link" href="#/podcast/">
       <img class="disable-drag now-playing-art" src="../../assets/play-button.png">
     </a> -->
-    
+    <div class="now-playing-art">
+      <img class="now-playing-image" [src]="this.episodeListService.podcast.artworkUrl600">
+    </div>
     <div class="now-playing-title">
-      <span class="episode-title">HorizonPod</span>
-      <span class="podcast-title">Web Podcast App</span>
+      <span class="podcast-title">{{this.episodeListService.podcast.collectionName}}</span>
+      <span class="episode-title">{{this.episodeListService.episodeTitle}}</span>
     </div>
   </section>
   
@@ -45,8 +47,10 @@
     </div>
 
 
-    <audio controls [src]="episodeListService.nowPlaying"></audio>
-
+    <!-- <audio controls [src]="episodeListService.nowPlaying"></audio> -->
+    <button (click)="playAudio()">Play</button>
+    <button (click)="pauseAudio()">Pause</button>
+    <mat-slider min="0" [max]="this.sidebarService.getDuration()" step="1" [(ngModel)]="this.sidebarService.audio.currentTime"></mat-slider>
 
     <div class="volume-control">
       <div class="volume-bar disable-select">

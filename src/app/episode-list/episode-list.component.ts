@@ -5,6 +5,7 @@ import { EpisodeListService } from './episode-list.service';
 import { Podcast } from '../podcast/Podcast';
 import { HomeService } from '../home/home.service';
 import { LoginService } from '../login/login.service';
+import { SidebarService } from '../sidebar/sidebar.service';
 
 @Component({
   selector: 'episode-list',
@@ -13,7 +14,7 @@ import { LoginService } from '../login/login.service';
 })
 export class EpisodeListComponent implements OnInit {
 
-  constructor(private searchresultsService:SearchResultsService, private episodelistservice:EpisodeListService, private homeService:HomeService, private loginService:LoginService) { }
+  constructor(private searchresultsService:SearchResultsService, private episodelistservice:EpisodeListService, private homeService:HomeService, private loginService:LoginService, private sidebarService:SidebarService) { }
 
   ngOnInit() {
     this.subscribed = false;
@@ -39,6 +40,7 @@ export class EpisodeListComponent implements OnInit {
 
     //this.loadAudioPlayer.emit(this.episodeList[index].enclosure.url);
     this.episodelistservice.loadAudio(this.episodeList[index].enclosure.url);
+    this.episodelistservice.setEpisodeTitle(this.episodeList[index].title);
   }
 
   public subscribe() {

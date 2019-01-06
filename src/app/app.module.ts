@@ -16,6 +16,7 @@ import {MatCardModule} from '@angular/material/card';
 import { EpisodeListComponent } from './episode-list/episode-list.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { MatSliderModule } from '@angular/material/slider';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { HomeComponent } from './home/home.component';
     MatButtonModule,
     HttpClientModule,
     FormsModule,
-    MatCardModule
+    MatCardModule,
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -78,6 +78,14 @@ html {
     box-sizing:border-box;
     margin:10px;
 }
+
+audio {
+    width:100%;
+}
+
+.now-playing-image {
+    width:100%;
+}
 /*
 .card {
     width: calc(33.33% - 16px);

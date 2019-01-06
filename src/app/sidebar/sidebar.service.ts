@@ -23,5 +23,18 @@ export class SidebarService {
     this.nowPlaying.next(url);
   }
 
+  audio = new Audio();
+
+  public loadAudioPlayer(url:string) {
+    this.audio.src = url;
+  }
+
+  public getDuration():number {
+    return this.audio.duration;
+  }
+
+  public getCurrentTime():number {
+    return this.audio.currentTime;
+  }
 
 }
