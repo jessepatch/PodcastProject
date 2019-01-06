@@ -29,12 +29,43 @@ export class SidebarService {
     this.audio.src = url;
   }
 
-  public getDuration():number {
-    return this.audio.duration;
+  public getDurationHour():number {
+    return Math.floor(this.audio.duration / 3600);
   }
 
-  public getCurrentTime():number {
-    return this.audio.currentTime;
+  public getDurationMinute() {
+    let x = this.audio.duration;
+    while(x > 0) {
+      x = x - 3600;
+    }
+    return Math.floor(x + 3600);
   }
 
+  public getDurationSecond() {
+    let y = this.audio.duration;
+    while(y > 0) {
+      y = y - 60;
+    }
+    return Math.ceil(y + 60);
+  }
+
+  public getCurrentTimeHour():number {
+    return Math.floor(this.audio.currentTime / 3600);
+  }
+
+  public getCurrentTimeMinute():number {
+    let x = this.audio.currentTime;
+    while(x > 0) {
+      x = x - 3600;
+    }
+    return Math.floor(x + 3600);
+  }
+
+  public getCurrentTimeSecond():number {
+    let y = this.audio.currentTime;
+    while(y > 0) {
+      y = y - 60;
+    }
+    return Math.ceil(y + 60);
+  }
 }
