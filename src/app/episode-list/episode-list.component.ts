@@ -6,6 +6,8 @@ import { Podcast } from '../podcast/Podcast';
 import { HomeService } from '../home/home.service';
 import { LoginService } from '../login/login.service';
 import { SidebarService } from '../sidebar/sidebar.service';
+import { EpisodeDetailsService } from '../episode-details/episode-details.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'episode-list',
@@ -14,7 +16,7 @@ import { SidebarService } from '../sidebar/sidebar.service';
 })
 export class EpisodeListComponent implements OnInit {
 
-  constructor(private searchresultsService:SearchResultsService, private episodelistservice:EpisodeListService, private homeService:HomeService, private loginService:LoginService, private sidebarService:SidebarService) { }
+  constructor(private router:Router, private episodeDetailsService:EpisodeDetailsService, private searchresultsService:SearchResultsService, private episodelistservice:EpisodeListService, private homeService:HomeService, private loginService:LoginService, private sidebarService:SidebarService) { }
 
   ngOnInit() {
     this.subscribed = false;
@@ -65,5 +67,10 @@ export class EpisodeListComponent implements OnInit {
 
       }
     )
+  }
+
+  public episodeDetails(index:number) {
+    this.episodeDetailsService.setPodcastEpisode(this.episodeList[index]);
+    this.router.navigateByUrl('/episodedetails');
   }
 }

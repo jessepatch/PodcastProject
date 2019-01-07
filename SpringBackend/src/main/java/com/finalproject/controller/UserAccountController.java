@@ -18,10 +18,6 @@ import com.finalproject.entity.UserAccount;
 import com.finalproject.repository.UserAccountRepository;
 import com.finalproject.service.UserAccountService;
 
-import entity.Student;
-
-
-
 @CrossOrigin
 @RestController
 public class UserAccountController {

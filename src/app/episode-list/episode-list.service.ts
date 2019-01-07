@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { LoginService } from '../login/login.service';
 import { SearchResultsService } from '../search-results/search-results.service';
 import { SidebarService } from '../sidebar/sidebar.service';
+import { EpisodeDetailsService } from '../episode-details/episode-details.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +21,7 @@ export class EpisodeListService {
   public loadAudio(url:string) {
     console.log("Step 2: load audio in episodeList service");
 
-    this.setPodcast(this.searchResultsService.podcast)
-    //add this back in if custom audio player doesn't work
-    //this.nowPlaying = url;
+    this.setPodcast(this.searchResultsService.podcast);
     this.sidebarService.loadAudioPlayer(url);
   }
 

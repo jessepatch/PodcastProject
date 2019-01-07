@@ -17,6 +17,7 @@ import { EpisodeListComponent } from './episode-list/episode-list.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { MatSliderModule } from '@angular/material/slider';
+import { EpisodeDetailsComponent } from './episode-details/episode-details.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { MatSliderModule } from '@angular/material/slider';
     SearchResultsComponent,
     EpisodeListComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    EpisodeDetailsComponent
   ],
   imports: [
     BrowserModule,
