@@ -38,10 +38,10 @@ export class EpisodeListComponent implements OnInit {
 
   public loadAudio(index:number) {
     console.log("Step 1: loadaudio in episodelist component");
-    console.log(this.episodeList[index].enclosure.url);
+    console.log(this.episodeList[index]);
 
     //this.loadAudioPlayer.emit(this.episodeList[index].enclosure.url);
-    this.episodelistservice.loadAudio(this.episodeList[index].enclosure.url);
+    this.episodelistservice.loadAudio(this.episodeList[index]);
     this.episodelistservice.setEpisodeTitle(this.episodeList[index].title);
   }
 
@@ -72,5 +72,9 @@ export class EpisodeListComponent implements OnInit {
   public episodeDetails(index:number) {
     this.episodeDetailsService.setPodcastEpisode(this.episodeList[index]);
     this.router.navigateByUrl('/episodedetails');
+  }
+
+  public addToPlaylist(index:number) {
+    this.sidebarService.addToPlaylist(this.episodeList[index]);
   }
 }

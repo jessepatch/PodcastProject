@@ -15,19 +15,11 @@ export class SidebarComponent implements OnInit {
   nowPlaying:string;
 
   constructor(private loginService:LoginService, private episodeListService:EpisodeListService, private sidebarService:SidebarService) {
-    // this.sideBarService.nowPlaying.subscribe(data => {
-    //   this.loadAudio(data);
-    // }) 
   }
 
   ngOnInit() {
   }
   
-  loadAudio(url){
-    console.log("Step 3:",url)
-    this.nowPlaying = url;
-  }
-
   //Custom Audio player begins here
   public loadAudioPlayer(url:string) {
     this.sidebarService.audio.src = url;

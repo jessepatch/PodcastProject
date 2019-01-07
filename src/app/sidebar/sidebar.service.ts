@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SidebarComponent } from './sidebar.component';
-import { Observable,empty, Subject } from 'rxjs';
+import { PodcastEpisode } from '../podcast/podcastEpisode';
 
 @Injectable({
   providedIn: 'root'
@@ -9,26 +9,18 @@ export class SidebarService {
 
   constructor() { }
 
-  
-
-  nowPlaying = new Subject();
-//new Observable((observer) => {
-    
-//     // observable execution
-//     observer.next()
-//     observer.complete()
-// })
-  public setNowPlaying(url:string) {
-    console.log("set url into now playing");
-    this.nowPlaying.next(url);
-  }
-
   audio = new Audio();
+  playlist:PodcastEpisode[] = [];
+  currentSong:number;
 
-  public loadAudioPlayer(url:string) {
-    this.audio.src = url;
-    this.audio.volume = 0.5;
-    //this.audio.addEventListener('ended', this.playNextSong());
+  public loadAudioPlayer(podcastEpisode:PodcastEpisode) {
+    if(this.playlist == null) {
+      this.audio.src = podcastEpisode.enclosure.url;
+      this.audio.volume = 0.5;
+      this.currentSong = 0;
+    }
+    this.playlist.push(podcastEpisode);
+    this.audio.addEventListener('ended', this.playNextSong);
   }
 
   public getDurationHour():number {
@@ -71,11 +63,12 @@ export class SidebarService {
     return Math.ceil(y + 60).toString().padStart(2, '0');
   }
 
-  public addToTrackList() {
-    this.audio.audioTracks[0];
+  public addToPlaylist(podcastEpisode:PodcastEpisode) {
+    this.playlist.push(podcastEpisode);
   }
 
-  // public playNextSong() {
-  //   this.audio.src = 
-  // }
+  public playNextSong() {
+    this.currentSong++;
+    this.audio.src = this.playlist[this.currentSong].enclosure.url;
+  }
 }

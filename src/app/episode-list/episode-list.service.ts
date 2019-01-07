@@ -6,6 +6,7 @@ import { LoginService } from '../login/login.service';
 import { SearchResultsService } from '../search-results/search-results.service';
 import { SidebarService } from '../sidebar/sidebar.service';
 import { EpisodeDetailsService } from '../episode-details/episode-details.service';
+import { PodcastEpisode } from '../podcast/podcastEpisode';
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +19,11 @@ export class EpisodeListService {
   podcast:Podcast;
   episodeTitle:string;
 
-  public loadAudio(url:string) {
+  public loadAudio(podcastEpisode:PodcastEpisode) {
     console.log("Step 2: load audio in episodeList service");
 
     this.setPodcast(this.searchResultsService.podcast);
-    this.sidebarService.loadAudioPlayer(url);
+    this.sidebarService.loadAudioPlayer(podcastEpisode);
   }
 
   public subscribe(podcast:Podcast):Observable<any> {

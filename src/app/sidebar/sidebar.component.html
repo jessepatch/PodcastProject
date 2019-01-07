@@ -13,7 +13,6 @@
     
 
 
-    <!-- <audio controls [src]="episodeListService.nowPlaying"></audio> -->
     <button (click)="playAudio()" *ngIf="this.sidebarService.audio.paused">Play</button>
     <button (click)="pauseAudio()" *ngIf="!this.sidebarService.audio.paused">Pause</button>
     <p>{{this.sidebarService.getCurrentTimeHour()}}:{{this.sidebarService.getCurrentTimeMinute()}}:{{this.sidebarService.getCurrentTimeSecond()}}--------{{this.sidebarService.getDurationHour()}}:{{this.sidebarService.getDurationMinute()}}:{{this.sidebarService.getDurationSecond()}}</p>
@@ -21,4 +20,10 @@
     <label for="volume">Volume</label>
     <mat-slider min="0" max="1.0" step="0.1" value="0.5" [(ngModel)]="this.sidebarService.audio.volume"></mat-slider>
     
+    <h5>Playlist</h5>
+    <ol>
+      <div *ngFor="let podcastEpisode of this.sidebarService.playlist">     
+         <li>{{podcastEpisode.title}}</li>
+      </div>
+    </ol>
 </section>
