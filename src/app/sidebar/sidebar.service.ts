@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { SidebarComponent } from './sidebar.component';
 import { PodcastEpisode } from '../podcast/podcastEpisode';
 
 @Injectable({
@@ -14,7 +13,7 @@ export class SidebarService {
   currentSong:number;
 
   public loadAudioPlayer(podcastEpisode:PodcastEpisode) {
-    if(this.playlist == null) {
+    if(this.playlist[0] == null) {
       this.audio.src = podcastEpisode.enclosure.url;
       this.audio.volume = 0.5;
       this.currentSong = 0;
@@ -67,8 +66,14 @@ export class SidebarService {
     this.playlist.push(podcastEpisode);
   }
 
+  public removeFromPlaylist(index:number) {
+    this.playlist.splice(index, 1);
+  }
+
   public playNextSong() {
     this.currentSong++;
     this.audio.src = this.playlist[this.currentSong].enclosure.url;
+    this.audio.load();
+    this.audio.play();
   }
 }

@@ -15,6 +15,10 @@
     height: 100%;
 }
 
+.sidebar-text{
+    color:white;
+}
+
 .searchbar {
     margin-top:40px;
     background-color:white;

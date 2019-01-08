@@ -5,8 +5,8 @@
       <img class="now-playing-image" [src]="this.episodeListService.podcast.artworkUrl600">
     </div>
    
-      <span class="podcast-title">{{this.episodeListService.podcast.collectionName}}</span>
-      <span class="episode-title">{{this.episodeListService.episodeTitle}}</span>
+      <span class="podcast-title sidebar-text">{{this.episodeListService.podcast.collectionName}}</span><br>
+      <span class="episode-title sidebar-text">{{this.episodeListService.episodeTitle}}</span>
   
   
  
@@ -15,15 +15,16 @@
 
     <button (click)="playAudio()" *ngIf="this.sidebarService.audio.paused">Play</button>
     <button (click)="pauseAudio()" *ngIf="!this.sidebarService.audio.paused">Pause</button>
-    <p>{{this.sidebarService.getCurrentTimeHour()}}:{{this.sidebarService.getCurrentTimeMinute()}}:{{this.sidebarService.getCurrentTimeSecond()}}--------{{this.sidebarService.getDurationHour()}}:{{this.sidebarService.getDurationMinute()}}:{{this.sidebarService.getDurationSecond()}}</p>
+    <p class="sidebar-text">{{this.sidebarService.getCurrentTimeHour()}}:{{this.sidebarService.getCurrentTimeMinute()}}:{{this.sidebarService.getCurrentTimeSecond()}}--------{{this.sidebarService.getDurationHour()}}:{{this.sidebarService.getDurationMinute()}}:{{this.sidebarService.getDurationSecond()}}</p>
     <mat-slider min="0" [max]="this.sidebarService.audio.duration" step="1" [(ngModel)]="this.sidebarService.audio.currentTime"></mat-slider>
-    <label for="volume">Volume</label>
+    <label class="sidebar-text" for="volume">Volume</label>
     <mat-slider min="0" max="1.0" step="0.1" value="0.5" [(ngModel)]="this.sidebarService.audio.volume"></mat-slider>
     
-    <h5>Playlist</h5>
+    <h5 class="sidebar-text">Playlist</h5>
     <ol>
-      <div *ngFor="let podcastEpisode of this.sidebarService.playlist">     
-         <li>{{podcastEpisode.title}}</li>
+      <div *ngFor="let podcastEpisode of this.sidebarService.playlist, let i = index">     
+         <li class="sidebar-text">{{podcastEpisode.title}}</li>
+         <button (click)="this.sidebarService.removeFromPlaylist(i)">Remove</button>
       </div>
     </ol>
 </section>
