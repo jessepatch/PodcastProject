@@ -1,30 +1,36 @@
 <section class="sidebar-right">
   
-  <span *ngIf="this.loginService.getLoginUser() != null" class="name">Welcome, {{this.loginService.getLoginUser().firstName}}</span>
+  <span *ngIf="this.loginService.getLoginUser() != null" class="name sidebar-text">Welcome, {{this.loginService.getLoginUser().firstName}}</span>
     <div class="now-playing-art">
-      <img class="now-playing-image" [src]="this.episodeListService.podcast.artworkUrl600">
+      <img class="now-playing-image" [src]="this.sidebarService.currentTrack?.playlistArtwork">
     </div>
    
-      <span class="podcast-title sidebar-text">{{this.episodeListService.podcast.collectionName}}</span><br>
-      <span class="episode-title sidebar-text">{{this.episodeListService.episodeTitle}}</span>
+      <span  class="podcast-title sidebar-text">{{this.sidebarService.currentTrack?.playlistPodcastTitle}}</span><br>
+      <span  class="episode-title sidebar-text">{{this.sidebarService.currentTrack?.playlistEpisodeTitle}}</span>
   
   
  
     
 
-
+    <button (click)="this.sidebarService.playPreviousSong()">Play Previous</button>
+    <button (click)="this.sidebarService.rewindTrack()">Rewind 15</button>
     <button (click)="playAudio()" *ngIf="this.sidebarService.audio.paused">Play</button>
     <button (click)="pauseAudio()" *ngIf="!this.sidebarService.audio.paused">Pause</button>
+    <button (click)="this.sidebarService.fastForwardTrack()">FF 15</button>
+    <button (click)="this.sidebarService.playNextSong()">Play Next</button>
     <p class="sidebar-text">{{this.sidebarService.getCurrentTimeHour()}}:{{this.sidebarService.getCurrentTimeMinute()}}:{{this.sidebarService.getCurrentTimeSecond()}}--------{{this.sidebarService.getDurationHour()}}:{{this.sidebarService.getDurationMinute()}}:{{this.sidebarService.getDurationSecond()}}</p>
     <mat-slider min="0" [max]="this.sidebarService.audio.duration" step="1" [(ngModel)]="this.sidebarService.audio.currentTime"></mat-slider>
     <label class="sidebar-text" for="volume">Volume</label>
     <mat-slider min="0" max="1.0" step="0.1" value="0.5" [(ngModel)]="this.sidebarService.audio.volume"></mat-slider>
+    <button (click)="listenHistory()">Play History</button>
     
-    <h5 class="sidebar-text">Playlist</h5>
-    <ol>
-      <div *ngFor="let podcastEpisode of this.sidebarService.playlist, let i = index">     
-         <li class="sidebar-text">{{podcastEpisode.title}}</li>
-         <button (click)="this.sidebarService.removeFromPlaylist(i)">Remove</button>
-      </div>
-    </ol>
+    <div class="playlist">
+      <h5 class="sidebar-text">Playlist</h5>
+      <ol>
+        <div *ngFor="let playlistTrack of this.sidebarService.playlist, let i = index">     
+          <li class="sidebar-text">{{playlistTrack.podcastEpisodeTitle}}</li>
+          <button (click)="this.sidebarService.removeFromPlaylist(i)">Remove</button>
+        </div>
+      </ol>
+    </div>
 </section>

@@ -12,8 +12,6 @@ import { SearchResultsService } from '../search-results/search-results.service';
 })
 export class SidebarComponent implements OnInit {
 
-  nowPlaying:string;
-
   constructor(private loginService:LoginService, private episodeListService:EpisodeListService, private sidebarService:SidebarService) {
   }
 
@@ -39,5 +37,9 @@ export class SidebarComponent implements OnInit {
 
   public setVolume(volume:number) {
     this.sidebarService.audio.volume = volume;
+  }
+
+  public listenHistory() {
+    console.log(this.sidebarService.audio.played);
   }
 }

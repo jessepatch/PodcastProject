@@ -8,6 +8,7 @@ import { LoginService } from '../login/login.service';
 import { SidebarService } from '../sidebar/sidebar.service';
 import { EpisodeDetailsService } from '../episode-details/episode-details.service';
 import { Router } from '@angular/router';
+import { PlaylistTrack } from '../podcast/PlaylistTrack';
 
 @Component({
   selector: 'episode-list',
@@ -21,9 +22,11 @@ export class EpisodeListComponent implements OnInit {
   ngOnInit() {
     this.subscribed = false;
     if(this.loginService.getLoginUser() != null) {
-      for(let i:number = 0; i<this.homeService.subscribedPodcasts.length; i++) {
-       if(this.homeService.subscribedPodcasts[i].collectionName == this.podcast.collectionName) {
-          this.subscribed = true;
+      if(this.homeService.subscribedPodcasts != null) {
+        for(let i:number = 0; i<this.homeService.subscribedPodcasts.length; i++) {
+          if(this.homeService.subscribedPodcasts[i].collectionName == this.podcast.collectionName) {
+           this.subscribed = true;
+          }
         }
       }
     }
@@ -32,15 +35,12 @@ export class EpisodeListComponent implements OnInit {
   episodeList:PodcastEpisode[] = this.searchresultsService.rssfeed.rss.channel.item;
   podcast:Podcast = this.searchresultsService.podcast;
 
-  //@Output() loadAudioPlayer = new EventEmitter();
-
   subscribed:boolean;
 
   public loadAudio(index:number) {
     console.log("Step 1: loadaudio in episodelist component");
     console.log(this.episodeList[index]);
 
-    //this.loadAudioPlayer.emit(this.episodeList[index].enclosure.url);
     this.episodelistservice.loadAudio(this.episodeList[index]);
     this.episodelistservice.setEpisodeTitle(this.episodeList[index].title);
   }
@@ -75,6 +75,14 @@ export class EpisodeListComponent implements OnInit {
   }
 
   public addToPlaylist(index:number) {
-    this.sidebarService.addToPlaylist(this.episodeList[index]);
+    
+    let playlistEpisode = new PlaylistTrack();
+
+    playlistEpisode.playlistArtwork = this.podcast.artworkUrl600;
+    playlistEpisode.playlistUrl = this.episodeList[index].enclosure.url;
+    playlistEpisode.playlistEpisodeTitle = this.episodeList[index].title;
+    playlistEpisode.playlistPodcastTitle = this.podcast.collectionName;
+
+    this.sidebarService.addToPlaylist(playlistEpisode);
   }
 }

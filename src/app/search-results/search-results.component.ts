@@ -3,6 +3,7 @@ import { HeaderService } from '../header/header.service';
 import { Podcast, PodcastAPI } from '../podcast/Podcast';
 import { Router } from '@angular/router';
 import { SearchResultsService } from './search-results.service';
+import { EpisodeListService } from '../episode-list/episode-list.service';
 
 @Component({
   selector: 'search-results',
@@ -11,7 +12,7 @@ import { SearchResultsService } from './search-results.service';
 })
 export class SearchResultsComponent implements OnInit {
 
-  constructor(private headerService:HeaderService, private searchresultsService:SearchResultsService, private router:Router) { }
+  constructor(private episodeListService:EpisodeListService, private headerService:HeaderService, private searchresultsService:SearchResultsService, private router:Router) { }
 
   ngOnInit() {
   }
@@ -25,6 +26,7 @@ export class SearchResultsComponent implements OnInit {
         console.log(data);
         this.searchresultsService.setEpisodeList(data);
         this.searchresultsService.setPodcast(this.searchPodcasts[index]);
+        this.episodeListService.setPodcast(this.searchPodcasts[index]);
         this.router.navigateByUrl('/episodelist');
        },
        error => {

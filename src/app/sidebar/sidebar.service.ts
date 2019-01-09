@@ -1,25 +1,34 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnChanges, SimpleChanges } from '@angular/core';
 import { PodcastEpisode } from '../podcast/podcastEpisode';
+import { PlaylistTrack } from '../podcast/PlaylistTrack';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SidebarService {
+export class SidebarService{
 
   constructor() { }
 
   audio = new Audio();
-  playlist:PodcastEpisode[] = [];
+  playlist:PlaylistTrack[] = [];
   currentSong:number;
+  currentTrack:PlaylistTrack;
 
-  public loadAudioPlayer(podcastEpisode:PodcastEpisode) {
+
+  public loadAudioPlayer(podcastEpisode:PlaylistTrack) {
     if(this.playlist[0] == null) {
-      this.audio.src = podcastEpisode.enclosure.url;
+      this.currentTrack = podcastEpisode;
+      this.audio.src = podcastEpisode.playlistUrl;
       this.audio.volume = 0.5;
       this.currentSong = 0;
     }
     this.playlist.push(podcastEpisode);
-    this.audio.addEventListener('ended', this.playNextSong);
+    this.audio.addEventListener("ended", event=> {
+      this.playNextSong();
+    })
+    this.audio.addEventListener("timeupdate", event=> {
+
+    })
   }
 
   public getDurationHour():number {
@@ -62,7 +71,7 @@ export class SidebarService {
     return Math.ceil(y + 60).toString().padStart(2, '0');
   }
 
-  public addToPlaylist(podcastEpisode:PodcastEpisode) {
+  public addToPlaylist(podcastEpisode:PlaylistTrack) {
     this.playlist.push(podcastEpisode);
   }
 
@@ -71,9 +80,28 @@ export class SidebarService {
   }
 
   public playNextSong() {
-    this.currentSong++;
-    this.audio.src = this.playlist[this.currentSong].enclosure.url;
+    this.currentSong = this.currentSong + 1;
+    this.currentTrack = this.playlist[this.currentSong];
+    this.audio.src = this.playlist[this.currentSong].playlistUrl;
     this.audio.load();
     this.audio.play();
   }
+
+  public playPreviousSong() {
+    this.currentSong = this.currentSong - 1;
+    this.currentTrack = this.playlist[this.currentSong];
+    this.audio.src = this.playlist[this.currentSong].playlistUrl;
+    this.audio.load();
+    this.audio.play();
+  }
+
+  public rewindTrack() {
+    this.audio.currentTime = this.audio.currentTime - 15;
+  }
+
+  public fastForwardTrack() {
+    this.audio.currentTime = this.audio.currentTime + 15;
+  }
+
+
 }
