@@ -28,7 +28,7 @@
       <h5 class="sidebar-text">Playlist</h5>
       <ol>
         <div *ngFor="let playlistTrack of this.sidebarService.playlist, let i = index">     
-          <li class="sidebar-text">{{playlistTrack.podcastEpisodeTitle}}</li>
+          <li class="sidebar-text">{{playlistTrack.playlistEpisodeTitle}}</li>
           <button (click)="this.sidebarService.removeFromPlaylist(i)">Remove</button>
         </div>
       </ol>

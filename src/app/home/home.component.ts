@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { HomeService } from './home.service';
 import { Podcast } from '../podcast/Podcast';
 import { SearchResultsService } from '../search-results/search-results.service';
+import { EpisodeListService } from '../episode-list/episode-list.service';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ import { SearchResultsService } from '../search-results/search-results.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private loginService:LoginService, private router:Router, private homeService:HomeService, private searchResultsService:SearchResultsService) { }
+  constructor(private loginService:LoginService, private router:Router, private homeService:HomeService, private searchResultsService:SearchResultsService, private episodelistService:EpisodeListService) { }
 
   user:User = this.loginService.getLoginUser();
 
@@ -26,20 +27,23 @@ export class HomeComponent implements OnInit {
       data=>{
         console.log(data);
         this.homeService.setSubscribedPodcasts(data);
+        console.log('subscribedPodcasts', this.homeService.subscribedPodcasts)
+
       },
       error=>{
         console.log("error retieving subscriptions");
       }
     )
-    console.log('subscribedPodcasts', this.homeService.subscribedPodcasts)
   }
 
   public episodeList(index:number) {
-    this.searchResultsService.episodeList(this.homeService.subscribedPodcasts[index].feedUrl).subscribe(
+    this.searchResultsService.episodeList(this.homeService.subscribedPodcasts[index]).subscribe(
       data => {
         console.log(data);
-        this.searchResultsService.setEpisodeList(data);
+        this.episodelistService.setEpisodeListPlusListened(data);
         this.searchResultsService.setPodcast(this.homeService.subscribedPodcasts[index]);
+        this.episodelistService.setPodcast(this.homeService.subscribedPodcasts[index]);
+        console.log('episode list method in home comp', this.homeService.subscribedPodcasts[index]);
         this.router.navigateByUrl('/episodelist');
        },
        error => {

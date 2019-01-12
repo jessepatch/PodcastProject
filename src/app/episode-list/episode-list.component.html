@@ -7,4 +7,6 @@
 </p>
 <button (click)="episodeDetails(i)">Details</button>
 <button (click)="addToPlaylist(i)">Add to Playlist</button>
+<button *ngIf="!PodcastEpisode.listened && this.loginService.getLoginUser() != null" (click)="markListened(i)">Mark Listened</button>
+<button *ngIf="PodcastEpisode.listened && this.loginService.getLoginUser() != null" (click)="unmarkListened(i)">Unmark Listened</button>
 </div>

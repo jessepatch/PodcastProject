@@ -4,6 +4,7 @@ import { Podcast, PodcastAPI } from '../podcast/Podcast';
 import { Router } from '@angular/router';
 import { SearchResultsService } from './search-results.service';
 import { EpisodeListService } from '../episode-list/episode-list.service';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'search-results',
@@ -12,7 +13,7 @@ import { EpisodeListService } from '../episode-list/episode-list.service';
 })
 export class SearchResultsComponent implements OnInit {
 
-  constructor(private episodeListService:EpisodeListService, private headerService:HeaderService, private searchresultsService:SearchResultsService, private router:Router) { }
+  constructor(private episodeListService:EpisodeListService, private headerService:HeaderService, private searchresultsService:SearchResultsService, private router:Router, private loginService:LoginService) { }
 
   ngOnInit() {
   }
@@ -21,17 +22,34 @@ export class SearchResultsComponent implements OnInit {
   searchPodcasts:Podcast[] = this.headerService.tempsearchPodcasts.results;
 
   public episodeList(index:number) {
-    this.searchresultsService.episodeList(this.searchPodcasts[index].feedUrl).subscribe(
+    if(this.loginService.getLoginUser != null) {
+    this.searchresultsService.episodeList(this.searchPodcasts[index]).subscribe(
       data => {
         console.log(data);
-        this.searchresultsService.setEpisodeList(data);
-        this.searchresultsService.setPodcast(this.searchPodcasts[index]);
+        this.episodeListService.setEpisodeListPlusListened(data);
         this.episodeListService.setPodcast(this.searchPodcasts[index]);
+        this.searchresultsService.setPodcast(this.searchPodcasts[index]);
         this.router.navigateByUrl('/episodelist');
        },
        error => {
         
        } 
+       
+      )
+    }
+    else {
+      this.searchresultsService.getEpisodeListFromXML(this.searchPodcasts[index]).subscribe(
+        data=> {
+          console.log(data);
+          this.episodeListService.setEpisodeList(data);
+          this.episodeListService.setPodcast(this.searchPodcasts[index]);
+          this.searchresultsService.setPodcast(this.searchPodcasts[index]);
+          this.router.navigateByUrl('/episodelist');
+        },
+        error=> {
+
+        }
       )
     }
   }
+}

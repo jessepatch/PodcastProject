@@ -30,9 +30,19 @@ export class EpisodeListComponent implements OnInit {
         }
       }
     }
+
+    if(this.episodelistservice.listenedPodcasts != null) {
+      for(let i = 0; i < this.episodelistservice.listenedPodcasts.length; i++) {
+        for(let j = 0; i < this.episodelistservice.rssfeed.rss.channel.item.length; j++) {
+          if(this.episodelistservice.listenedPodcasts[i]["itunes:episode"] == this.episodelistservice.rssfeed.rss.channel.item[j]["itunes:episode"]) {
+            this.episodelistservice.rssfeed.rss.channel.item[j].listened = true;
+          }
+        }
+      }
+    }
   }
 
-  episodeList:PodcastEpisode[] = this.searchresultsService.rssfeed.rss.channel.item;
+  episodeList:PodcastEpisode[] = this.episodelistservice.episodeListPlusListened.rssfeed.rss.channel.item;
   podcast:Podcast = this.searchresultsService.podcast;
 
   subscribed:boolean;
@@ -40,7 +50,7 @@ export class EpisodeListComponent implements OnInit {
   public loadAudio(index:number) {
     console.log("Step 1: loadaudio in episodelist component");
     console.log(this.episodeList[index]);
-
+    console.log('podcast', this.episodelistservice.podcast);
     this.episodelistservice.loadAudio(this.episodeList[index]);
     this.episodelistservice.setEpisodeTitle(this.episodeList[index].title);
   }
@@ -75,7 +85,7 @@ export class EpisodeListComponent implements OnInit {
   }
 
   public addToPlaylist(index:number) {
-    
+
     let playlistEpisode = new PlaylistTrack();
 
     playlistEpisode.playlistArtwork = this.podcast.artworkUrl600;
@@ -84,5 +94,27 @@ export class EpisodeListComponent implements OnInit {
     playlistEpisode.playlistPodcastTitle = this.podcast.collectionName;
 
     this.sidebarService.addToPlaylist(playlistEpisode);
+  }
+
+  public markListened(index:number) {
+    this.episodelistservice.markListened(this.episodeList[index]).subscribe(
+      data=>{
+        this.episodeList[index].listened = true;
+      },
+      error=>{
+
+      }
+    )
+  }
+
+  public unmarkListened(index:number) {
+    this.episodelistservice.unmarkListened(this.episodeList[index].id).subscribe(
+      data=> {
+        this.episodeList[index].listened = false;
+      },
+      error=> {
+
+      }
+    )
   }
 }

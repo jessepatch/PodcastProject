@@ -1,3 +1,8 @@
+export class EpisodeListPlusListened {
+    rssfeed:RssFeed;
+    listenedPodcasts:PodcastEpisode[];
+}
+
 export class PodcastEpisode {
     title:string;
     description:string;
@@ -8,6 +13,8 @@ export class PodcastEpisode {
     listened:boolean;
 
 }
+
+
 export class RssFeed{
     rss:Rss;
 }

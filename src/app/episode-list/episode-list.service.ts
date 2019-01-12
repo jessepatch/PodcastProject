@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Podcast } from '../podcast/Podcast';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LoginService } from '../login/login.service';
 import { SearchResultsService } from '../search-results/search-results.service';
 import { SidebarService } from '../sidebar/sidebar.service';
 import { EpisodeDetailsService } from '../episode-details/episode-details.service';
-import { PodcastEpisode } from '../podcast/podcastEpisode';
+import { PodcastEpisode, RssFeed } from '../podcast/podcastEpisode';
 import { PlaylistTrack } from '../podcast/PlaylistTrack';
+import { EpisodeListPlusListened } from '../podcast/EpisodeListPlusListened';
 
 @Injectable({
   providedIn: 'root'
@@ -16,13 +17,17 @@ export class EpisodeListService {
 
   constructor(private http:HttpClient, private loginService:LoginService, private searchResultsService:SearchResultsService, private sidebarService:SidebarService) { }
 
+  episodeListPlusListened:EpisodeListPlusListened;
   nowPlaying:string = null;
   podcast:Podcast;
   episodeTitle:string;
+  listenedPodcasts:PodcastEpisode[];
+  rssfeed:RssFeed;
 
   public loadAudio(podcastEpisode:PodcastEpisode) {
     console.log("Step 2: load audio in episodeList service");
     let playlistEpisode = new PlaylistTrack();
+    console.log('podcast', this.podcast);
     playlistEpisode.playlistArtwork = this.podcast.artworkUrl600;
     playlistEpisode.playlistUrl = podcastEpisode.enclosure.url;
     playlistEpisode.playlistEpisodeTitle = podcastEpisode.title;
@@ -44,11 +49,35 @@ export class EpisodeListService {
     return this.http.post('http://localhost:8080/unsubscribe', id);
   }
 
+  public markListened(podcastEpisode:PodcastEpisode):Observable<any> {
+    let podcastListened = {};
+    podcastListened['email'] = this.loginService.getLoginUser().email;
+    podcastListened['collectionName'] = this.podcast.collectionName;
+    podcastListened['episodeNumber'] = podcastEpisode["itunes:episode"];
+    return this.http.post('http://localhost:8080/markListened', podcastListened);
+  }
+
+  public unmarkListened(id:string):Observable<any> {
+    return this.http.post('http://localhost:8080/unmarkListened', id);
+  }
+
   public setPodcast(podcast:Podcast) {
     this.podcast = podcast;
   }
 
   public setEpisodeTitle(episodeTitle:string) {
     this.episodeTitle = episodeTitle;
+  }
+
+  public setListenedPodcasts(listenedPodcasts:PodcastEpisode[]) {
+    this.listenedPodcasts = listenedPodcasts;
+  }
+
+  public setEpisodeListPlusListened(episodeListPlusListened:EpisodeListPlusListened) {
+    this.episodeListPlusListened = episodeListPlusListened;
+  }
+
+  public setEpisodeList(rssfeed:RssFeed) {
+    this.rssfeed = rssfeed;
   }
 }

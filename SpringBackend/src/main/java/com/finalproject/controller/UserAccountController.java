@@ -25,23 +25,6 @@ public class UserAccountController {
 	@Autowired
 	private UserAccountService userAccountService;
 
-	@RequestMapping(value="/rss/podcast", 
-			produces=MediaType.APPLICATION_JSON_VALUE, 
-			method = RequestMethod.GET
-			)
-	public  ResponseEntity<String> fetchRSSFeed(String feedUrl) {
-		
-		RestTemplate restTemplate = new RestTemplate();
-		
-		String rss = restTemplate.getForObject(feedUrl, String.class);
-		
-		JSONObject xmlJSONObj = XML.toJSONObject(rss);
-
-		
-		return new ResponseEntity<>(xmlJSONObj.toString(), HttpStatus.OK); 
-	}
-	
-	
 	@RequestMapping(value="/login", 
 			produces=MediaType.APPLICATION_JSON_VALUE, 
 			method = RequestMethod.POST

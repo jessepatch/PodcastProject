@@ -41,5 +41,12 @@ export class SidebarComponent implements OnInit {
 
   public listenHistory() {
     console.log(this.sidebarService.audio.played);
+    console.log(this.sidebarService.audio.played.start(0));
+    console.log(this.sidebarService.audio.played.end(0));
+    console.log(this.sidebarService.audio.played.length);
+
+    for(let i = 0; i < this.sidebarService.audio.played.length; i++) {
+      console.log(this.sidebarService.audio.played.end(i));
+    }
   }
 }
