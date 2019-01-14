@@ -3,10 +3,10 @@ export class PodcastEpisode {
     description:string;
     pubDate:string;
     enclosure:PodcastAudio;
-    'itunes:episode':string;
+    'itunes:episode':number;
     id:string;
     listened:boolean;
-
+    episodeNumber:number;
 }
 export class RssFeed{
     rss:Rss;

@@ -36,6 +36,7 @@ public class ListenedController {
 			)
 	public  ResponseEntity<String> fetchRSSFeed(String feedUrl) {
 		
+		//this path does not retrieve listened to episodes
 		RestTemplate restTemplate = new RestTemplate();
 		
 		String rss = restTemplate.getForObject(feedUrl, String.class);
@@ -54,7 +55,6 @@ public class ListenedController {
 	}
 	
 	@RequestMapping(value="/unmarkListened",
-			consumes=MediaType.APPLICATION_JSON_VALUE,
 			method=RequestMethod.POST
 			)
 	public void unmarkListened(@RequestBody String id) {
@@ -76,10 +76,11 @@ public class ListenedController {
 		String rss = restTemplate.getForObject(feedUrl, String.class);
 		
 		JSONObject xmlJSONObj = XML.toJSONObject(rss);
-		//String rssfeed = xmlJSONObj.toString();
+		
+		//convert JSON to java
 		Map<String, Object> map = new HashMap<String, Object>();
 		map = xmlJSONObj.toMap();
-		System.out.println(map);
+		
 		//Returning two object in one
 		EpisodeListPlusListened episodeListPlusListened = new EpisodeListPlusListened();
 		episodeListPlusListened.setRssfeed(map);

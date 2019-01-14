@@ -30,19 +30,21 @@ export class EpisodeListComponent implements OnInit {
         }
       }
     }
-
+console.log("listened", this.episodelistservice.listenedPodcasts);
+console.log("list", this.episodelistservice.rssfeed.rss.channel.item);
     if(this.episodelistservice.listenedPodcasts != null) {
       for(let i = 0; i < this.episodelistservice.listenedPodcasts.length; i++) {
-        for(let j = 0; i < this.episodelistservice.rssfeed.rss.channel.item.length; j++) {
-          if(this.episodelistservice.listenedPodcasts[i]["itunes:episode"] == this.episodelistservice.rssfeed.rss.channel.item[j]["itunes:episode"]) {
+        for(let j = 0; j < this.episodelistservice.rssfeed.rss.channel.item.length; j++) {
+          if(this.episodelistservice.listenedPodcasts[i].episodeNumber == this.episodelistservice.rssfeed.rss.channel.item[j]['itunes:episode']) {
             this.episodelistservice.rssfeed.rss.channel.item[j].listened = true;
+            this.episodelistservice.rssfeed.rss.channel.item[j].id = this.episodelistservice.listenedPodcasts[i].id;
           }
         }
       }
     }
   }
 
-  episodeList:PodcastEpisode[] = this.episodelistservice.episodeListPlusListened.rssfeed.rss.channel.item;
+  episodeList:PodcastEpisode[] = this.episodelistservice.rssfeed.rss.channel.item;
   podcast:Podcast = this.searchresultsService.podcast;
 
   subscribed:boolean;

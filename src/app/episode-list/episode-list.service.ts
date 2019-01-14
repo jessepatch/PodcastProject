@@ -75,6 +75,9 @@ export class EpisodeListService {
 
   public setEpisodeListPlusListened(episodeListPlusListened:EpisodeListPlusListened) {
     this.episodeListPlusListened = episodeListPlusListened;
+    this.rssfeed = episodeListPlusListened.rssfeed;
+    console.log("listened setter", episodeListPlusListened.listenedPodcasts);
+    this.listenedPodcasts = episodeListPlusListened.listenedPodcasts;
   }
 
   public setEpisodeList(rssfeed:RssFeed) {

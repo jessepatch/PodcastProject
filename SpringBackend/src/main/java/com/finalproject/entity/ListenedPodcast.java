@@ -17,7 +17,7 @@ public class ListenedPodcast {
 	@Column(name="collection_name")
 	private String collectionName;
 	@Column(name="episode_number")
-	private String episodeNumber;
+	private int episodeNumber;
 	
 	
 	public int getId() {
@@ -38,10 +38,10 @@ public class ListenedPodcast {
 	public void setCollectionName(String collectionName) {
 		this.collectionName = collectionName;
 	}
-	public String getEpisodeNumber() {
+	public int getEpisodeNumber() {
 		return episodeNumber;
 	}
-	public void setEpisodeNumber(String episodeNumber) {
+	public void setEpisodeNumber(int episodeNumber) {
 		this.episodeNumber = episodeNumber;
 	}
 }

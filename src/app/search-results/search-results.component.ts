@@ -22,7 +22,7 @@ export class SearchResultsComponent implements OnInit {
   searchPodcasts:Podcast[] = this.headerService.tempsearchPodcasts.results;
 
   public episodeList(index:number) {
-    if(this.loginService.getLoginUser != null) {
+    if(this.loginService.getLoginUser() != null) {
     this.searchresultsService.episodeList(this.searchPodcasts[index]).subscribe(
       data => {
         console.log(data);
