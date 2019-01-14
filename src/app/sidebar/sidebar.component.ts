@@ -17,6 +17,10 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  ngOnDestroy() {
+    this.sidebarService.saveTimeListened(this.sidebarService.audio.played);
+  }
   
   //Custom Audio player begins here
   public loadAudioPlayer(url:string) {

@@ -1,13 +1,14 @@
 import { Injectable, OnChanges, SimpleChanges } from '@angular/core';
 import { PodcastEpisode } from '../podcast/podcastEpisode';
 import { PlaylistTrack } from '../podcast/PlaylistTrack';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SidebarService{
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
   audio = new Audio();
   playlist:PlaylistTrack[] = [];
@@ -103,5 +104,7 @@ export class SidebarService{
     this.audio.currentTime = this.audio.currentTime + 15;
   }
 
-
+  public saveTimeListened(timeListened:TimeListened) {
+    return this.http.post('http://localhost:8080/saveTimeListened', timeListened)
+  }
 }
