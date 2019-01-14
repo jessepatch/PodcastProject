@@ -35,7 +35,7 @@ console.log("list", this.episodelistservice.rssfeed.rss.channel.item);
     if(this.episodelistservice.listenedPodcasts != null) {
       for(let i = 0; i < this.episodelistservice.listenedPodcasts.length; i++) {
         for(let j = 0; j < this.episodelistservice.rssfeed.rss.channel.item.length; j++) {
-          if(this.episodelistservice.listenedPodcasts[i].episodeNumber == this.episodelistservice.rssfeed.rss.channel.item[j]['itunes:episode']) {
+          if(this.episodelistservice.listenedPodcasts[i].title === this.episodelistservice.rssfeed.rss.channel.item[j].title) {
             this.episodelistservice.rssfeed.rss.channel.item[j].listened = true;
             this.episodelistservice.rssfeed.rss.channel.item[j].id = this.episodelistservice.listenedPodcasts[i].id;
           }

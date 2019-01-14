@@ -53,7 +53,7 @@ export class EpisodeListService {
     let podcastListened = {};
     podcastListened['email'] = this.loginService.getLoginUser().email;
     podcastListened['collectionName'] = this.podcast.collectionName;
-    podcastListened['episodeNumber'] = podcastEpisode["itunes:episode"];
+    podcastListened['title'] = podcastEpisode.title;
     return this.http.post('http://localhost:8080/markListened', podcastListened);
   }
 

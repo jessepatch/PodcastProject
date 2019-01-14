@@ -104,7 +104,7 @@ export class SidebarService{
     this.audio.currentTime = this.audio.currentTime + 15;
   }
 
-  public saveTimeListened(timeListened:TimeListened) {
-    return this.http.post('http://localhost:8080/saveTimeListened', timeListened)
-  }
+  // public saveTimeListened(timeListened:TimeListened) {
+  //   return this.http.post('http://localhost:8080/saveTimeListened', timeListened)
+  // }
 }
