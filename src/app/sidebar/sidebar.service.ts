@@ -32,24 +32,28 @@ export class SidebarService{
     })
   }
 
-  public getDurationHour():number {
-    return Math.floor(this.audio.duration / 3600);
+  public getDurationHour() {
+    let x = '0';
+    if (!isNaN(this.audio.duration)) {
+      x = Math.floor(this.audio.duration / 3600).toString();
+    }
+    return x;
   }
 
   public getDurationMinute() {
-    let x = this.audio.duration;
-    while(x > 0) {
-      x = x - 3600;
+    let x = '00';
+    if (!isNaN(this.audio.duration)) {
+      x = Math.floor((this.audio.duration / 60) % 60).toString().padStart(2, '0');
     }
-    return Math.floor((x + 3600) / 60).toString().padStart(2, '0');
+    return x;
   }
 
   public getDurationSecond() {
-    let y = this.audio.duration;
-    while(y > 0) {
-      y = y - 60;
+    let x = '00';
+    if (!isNaN(this.audio.duration)) {
+      x = Math.ceil(this.audio.duration % 60).toString().padStart(2, '0');
     }
-    return Math.ceil(y + 60).toString().padStart(2, '0');
+    return x;
   }
 
   public getCurrentTimeHour():number {
@@ -57,19 +61,11 @@ export class SidebarService{
   }
 
   public getCurrentTimeMinute() {
-    let x = this.audio.currentTime;
-    while(x > 0) {
-      x = x - 3600;
-    }
-    return Math.floor((x + 3600) / 60).toString().padStart(2, '0');
+    return Math.floor((this.audio.currentTime / 60) % 60).toString().padStart(2, '0');
   }
 
   public getCurrentTimeSecond() {
-    let y = this.audio.currentTime;
-    while(y > 0) {
-      y = y - 60;
-    }
-    return Math.ceil(y + 60).toString().padStart(2, '0');
+    return Math.ceil(this.audio.currentTime % 60).toString().padStart(2, '0');
   }
 
   public addToPlaylist(podcastEpisode:PlaylistTrack) {
@@ -97,11 +93,11 @@ export class SidebarService{
   }
 
   public rewindTrack() {
-    this.audio.currentTime = this.audio.currentTime - 15;
+    this.audio.currentTime = this.audio.currentTime - 30;
   }
 
   public fastForwardTrack() {
-    this.audio.currentTime = this.audio.currentTime + 15;
+    this.audio.currentTime = this.audio.currentTime + 30;
   }
 
   // public saveTimeListened(timeListened:TimeListened) {

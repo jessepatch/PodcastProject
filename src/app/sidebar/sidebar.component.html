@@ -12,12 +12,13 @@
  
     
 
-    <button (click)="this.sidebarService.playPreviousSong()">Play Previous</button>
-    <button (click)="this.sidebarService.rewindTrack()">Rewind 15</button>
-    <button (click)="playAudio()" *ngIf="this.sidebarService.audio.paused">Play</button>
-    <button (click)="pauseAudio()" *ngIf="!this.sidebarService.audio.paused">Pause</button>
-    <button (click)="this.sidebarService.fastForwardTrack()">FF 15</button>
-    <button (click)="this.sidebarService.playNextSong()">Play Next</button>
+    <i class="material-icons" (click)="this.sidebarService.playPreviousSong()">skip_previous</i>
+    <i class="material-icons" (click)="this.sidebarService.rewindTrack()">replay_30</i>
+    <i class="material-icons" (click)="playAudio()" *ngIf="this.sidebarService.audio.paused">play_circle_outline</i>
+    <i class="material-icons" (click)="pauseAudio()" *ngIf="!this.sidebarService.audio.paused">pause_circle_outline</i>
+    <i class="material-icons" (click)="this.sidebarService.fastForwardTrack()">forward_30</i>
+    <i class="material-icons" (click)="this.sidebarService.playNextSong()">skip_next</i>
+
     <p class="sidebar-text">{{this.sidebarService.getCurrentTimeHour()}}:{{this.sidebarService.getCurrentTimeMinute()}}:{{this.sidebarService.getCurrentTimeSecond()}}--------{{this.sidebarService.getDurationHour()}}:{{this.sidebarService.getDurationMinute()}}:{{this.sidebarService.getDurationSecond()}}</p>
     <mat-slider min="0" [max]="this.sidebarService.audio.duration" step="1" [(ngModel)]="this.sidebarService.audio.currentTime"></mat-slider>
     <label class="sidebar-text" for="volume">Volume</label>

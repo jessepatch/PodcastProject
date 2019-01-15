@@ -95,6 +95,45 @@ audio {
     overflow-y:scroll;
     height:125px;
 }
+
+.material-icons {
+    color: rgba(255, 255, 255, 1);
+  font-size:48px;  
+}
+
+.episode-title {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.podcast-title {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: grey; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: darkgrey; 
+  }
 /*
 .card {
     width: calc(33.33% - 16px);
