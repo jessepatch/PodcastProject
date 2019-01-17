@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import org.json.JSONObject;
 import org.json.XML;
@@ -39,16 +40,21 @@ public class NotificationService {
 		
 		for(int x = 0; x < allNotifications.size(); x++) {
 			String rssfeed = restTemplate.getForObject(allNotifications.get(x).getFeedUrl(), String.class);
-			JSONObject xmlJSONObj = XML.toJSONObject(rssfeed);
+			//JSONObject xmlJSONObj = XML.toJSONObject(rssfeed);
 			
-			String rss = xmlJSONObj.toString();
+			//String rss = xmlJSONObj.toString();
 			
-			String[] temprss = rss.split("<item>");
-			String[] episodes = temprss[1].split("</item>");
+			//String testString = "blahblahblah<item><title>80.This is the episode title</title>";
+			String rssfeed1 = rssfeed.replaceAll(Pattern.quote("<![CDATA["), "");
+			String rssfeed2 = rssfeed1.replaceAll(Pattern.quote("]]>"), "");
+			
+			String[] temprss = rssfeed2.split("<item>");
+			String[] temprssexample = temprss[1].split("<title>");
+			String[] episodes = temprssexample[1].split("</title>");
 			String episodeTitle = episodes[0];
 			
-			if(episodeTitle.equals(allNotifications.get(x).getMostRecentEpisode())) {
-				sendNotificationMail(allNotifications.get(x).getEmail(), allNotifications.get(x).getCollectionName() + " has added a new episode", allNotifications.get(x).getCollectionName() + " has added a new episode");
+			if(!episodeTitle.equals(allNotifications.get(x).getMostRecentEpisode())) {
+				sendNotificationMail(allNotifications.get(x).getEmail(), allNotifications.get(x).getCollectionName() + " has added a new episode", allNotifications.get(x).getCollectionName() + " has added a new episode: " + episodeTitle);
 			}
 			//convert JSON to java
 //			Map<String, Object> map = new HashMap<String, Object>();
@@ -58,6 +64,34 @@ public class NotificationService {
 //			rssfeed.channel.
 		}
 		//String rss = restTemplate.getForObject(feedUrl, String.class);
+		
+		for(int x = 0; x < allNotifications.size(); x++) {
+			String rssfeed = restTemplate.getForObject(allNotifications.get(x).getFeedUrl(), String.class);
+			
+			String rssfeed1 = rssfeed.replaceAll(Pattern.quote("<![CDATA["), "");
+			String rssfeed2 = rssfeed1.replaceAll(Pattern.quote("]]>"), "");
+			
+			//JSONObject xmlJSONObj = XML.toJSONObject(rssfeed);
+			
+			//String rss = xmlJSONObj.toString();
+			
+			//String testString = "blahblahblah<item><title>80.This is the episode title</title>";
+			
+			String[] temprss = rssfeed2.split("<item>");
+			String[] temprssexample = temprss[1].split("<title>");
+			String[] episodes = temprssexample[1].split("</title>");
+			String episodeTitle = episodes[0];
+			
+			if(!episodeTitle.equals(allNotifications.get(x).getMostRecentEpisode())) {
+				notificationRepository.updateLatestEpisode(allNotifications.get(x).getCollectionName(), episodeTitle);
+			}
+			//convert JSON to java
+//			Map<String, Object> map = new HashMap<String, Object>();
+//			map = xmlJSONObj.toMap();
+//			Rss rssfeed = new Rss();
+//			rssfeed = (Rss) map;
+//			rssfeed.channel.
+		}
 
 		
     }
