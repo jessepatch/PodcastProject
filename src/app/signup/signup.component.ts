@@ -28,4 +28,15 @@ export class SignupComponent implements OnInit {
     )
   }
 
+  public test() {
+    this.signupService.test(this.user).subscribe(
+      data=> {
+        console.log(data);
+      },
+      error=>{
+
+      }
+    )
+  }
+
 }
