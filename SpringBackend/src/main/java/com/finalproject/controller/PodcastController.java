@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.finalproject.dto.NotificationAndSubscribedList;
+import com.finalproject.entity.NotificationPodcast;
 import com.finalproject.entity.Podcast;
+import com.finalproject.service.NotificationService;
 import com.finalproject.service.PodcastService;
 
 @CrossOrigin
@@ -21,6 +24,9 @@ public class PodcastController {
 
 	@Autowired
 	private PodcastService podcastService;
+	
+	@Autowired
+	private NotificationService notificationService;
 	
 	@RequestMapping(value="/subscribe",
 			consumes=MediaType.APPLICATION_JSON_VALUE,
@@ -41,9 +47,15 @@ public class PodcastController {
 			produces=MediaType.APPLICATION_JSON_VALUE,
 			method=RequestMethod.GET
 			)
-	public ResponseEntity<List<Podcast>> home(String email) {
+	public ResponseEntity<NotificationAndSubscribedList> home(String email) {
 		List<Podcast> subscribedPodcasts = podcastService.getSubscriptions(email);
+		List<NotificationPodcast> notificationPodcasts = notificationService.getNotifications(email);
+		
+		NotificationAndSubscribedList notificationAndSubscribedList = new NotificationAndSubscribedList();
+		notificationAndSubscribedList.setSubscribedPodcasts(subscribedPodcasts);
+		notificationAndSubscribedList.setNotificationPodcasts(notificationPodcasts);
+		
 		System.out.println("return subscribed podcasts" + subscribedPodcasts.get(0).toString());
-		return new ResponseEntity<List<Podcast>>(subscribedPodcasts, HttpStatus.OK);
+		return new ResponseEntity<NotificationAndSubscribedList>(notificationAndSubscribedList, HttpStatus.OK);
 	}
 }

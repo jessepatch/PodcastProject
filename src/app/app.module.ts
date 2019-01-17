@@ -18,6 +18,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { EpisodeDetailsComponent } from './episode-details/episode-details.component';
+import { MaterialModule } from '@blox/material';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { EpisodeDetailsComponent } from './episode-details/episode-details.compo
     HttpClientModule,
     FormsModule,
     MatCardModule,
-    MatSliderModule
+    MatSliderModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

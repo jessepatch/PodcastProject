@@ -20,12 +20,23 @@ export class EpisodeListComponent implements OnInit {
   constructor(private router:Router, private episodeDetailsService:EpisodeDetailsService, private searchresultsService:SearchResultsService, private episodelistservice:EpisodeListService, private homeService:HomeService, private loginService:LoginService, private sidebarService:SidebarService) { }
 
   ngOnInit() {
+    //sets boolean for subscribed
     this.subscribed = false;
     if(this.loginService.getLoginUser() != null) {
       if(this.homeService.subscribedPodcasts != null) {
         for(let i:number = 0; i<this.homeService.subscribedPodcasts.length; i++) {
           if(this.homeService.subscribedPodcasts[i].collectionName == this.podcast.collectionName) {
            this.subscribed = true;
+          }
+        }
+      }
+    }
+    //Sets boolean for notifications
+    if(this.loginService.getLoginUser() != null) {
+      if(this.homeService.notificationPodcasts != null) {
+        for(let i:number = 0; i<this.homeService.notificationPodcasts.length; i++) {
+          if(this.homeService.notificationPodcasts[i].collectionName == this.podcast.collectionName) {
+           this.receivingEmailNotification = true;
           }
         }
       }
@@ -48,6 +59,7 @@ console.log("list", this.episodelistservice.rssfeed.rss.channel.item);
   podcast:Podcast = this.searchresultsService.podcast;
 
   subscribed:boolean;
+  receivingEmailNotification:boolean;
 
   public loadAudio(index:number) {
     console.log("Step 1: loadaudio in episodelist component");
@@ -76,6 +88,30 @@ console.log("list", this.episodelistservice.rssfeed.rss.channel.item);
         console.log("Unsubscribed to podcast");
       },
       error=>{
+
+      }
+    )
+  }
+
+  public receiveEmailNotification() {
+    this.episodelistservice.receiveEmailNotification(this.episodeList[0]).subscribe(
+      data=> {
+        this.receivingEmailNotification = true;
+        console.log("Receiving emails");
+      },
+      error=> {
+
+      }
+    )
+  }
+
+  public stopReceivingEmailNotification() {
+    this.episodelistservice.stopReceivingEmailNotification().subscribe(
+      data=> {
+        this.receivingEmailNotification = false;
+        console.log("No longer receiving emails");
+      },
+      error=> {
 
       }
     )

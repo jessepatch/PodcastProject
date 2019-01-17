@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
     this.homeService.getSubscriptions().subscribe(
       data=>{
         console.log(data);
-        this.homeService.setSubscribedPodcasts(data);
+        this.homeService.setNotificationAndSubscribedList(data);
         console.log('subscribedPodcasts', this.homeService.subscribedPodcasts)
 
       },
@@ -43,6 +43,7 @@ export class HomeComponent implements OnInit {
         this.episodelistService.setEpisodeListPlusListened(data);
         this.searchResultsService.setPodcast(this.homeService.subscribedPodcasts[index]);
         this.episodelistService.setPodcast(this.homeService.subscribedPodcasts[index]);
+        this.episodelistService.index = index;
         console.log('episode list method in home comp', this.homeService.subscribedPodcasts[index]);
         this.router.navigateByUrl('/episodelist');
        },

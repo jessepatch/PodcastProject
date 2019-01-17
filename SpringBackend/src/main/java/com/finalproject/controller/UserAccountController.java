@@ -16,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.finalproject.entity.UserAccount;
 import com.finalproject.repository.UserAccountRepository;
+import com.finalproject.service.SendMailService;
 import com.finalproject.service.UserAccountService;
 
 @CrossOrigin
@@ -24,6 +25,9 @@ public class UserAccountController {
 	
 	@Autowired
 	private UserAccountService userAccountService;
+	
+	@Autowired
+	private SendMailService sendMail;
 
 	@RequestMapping(value="/login", 
 			produces=MediaType.APPLICATION_JSON_VALUE, 
@@ -41,6 +45,7 @@ public class UserAccountController {
 			method=RequestMethod.POST
 			)
 	public void signup(@RequestBody UserAccount userAccount) {
+		sendMail.sendMail(userAccount.getEmail(), "Welcome, " + userAccount.getFirstName() + "to HorizonPod", "Hi " + userAccount.getFirstName() + " and welcome to the best podcast experience of your life. Now you can subscribe to podcasts, keep track of what you've already listened to and the website will also automatically keep track of your total time listened. We hope you enjoy the website, but also we thrive on your feedback. If you ever think of a feature you'd like to see, let us know and we will try to add it to the website. Our goal is user satisfaction! Thank you, Jesse Patch, Founder");
 		this.userAccountService.save(userAccount);	
 	}
 	

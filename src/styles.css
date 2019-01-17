@@ -6,7 +6,7 @@
     top: 40px;
     bottom: 0;
     right: 0;
-    width: 25%;
+    width: 350px;
     z-index: 15;
     margin-left: 100px;
     -webkit-box-shadow: -8px 0 12px -4px rgba(0,0,0,.3);
@@ -88,7 +88,16 @@ audio {
 }
 
 .now-playing-image {
-    width:100%;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 20px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+}
+
+.audio-controls {
+    margin-left:55px;
 }
 
 .playlist {
@@ -113,6 +122,7 @@ audio {
     text-overflow: ellipsis;
 }
 
+/*Scroll bar*/
 /* width */
 ::-webkit-scrollbar {
     width: 10px;
@@ -133,6 +143,28 @@ audio {
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: darkgrey; 
+  }
+
+  mat-slider {
+      width:100%;
+  }
+
+  .song-progress {
+      height: 28px!important;
+  }
+
+  .now-playing-info {
+      text-align: center;
+  }
+
+  .song-duration {
+    text-align: right;
+    margin-left:240px;
+  }
+
+  .song-current-time {
+    text-align:left;
+    margin-left:3px;
   }
 /*
 .card {

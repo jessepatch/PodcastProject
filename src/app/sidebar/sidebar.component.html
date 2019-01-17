@@ -2,25 +2,41 @@
   
   <span *ngIf="this.loginService.getLoginUser() != null" class="name sidebar-text">Welcome, {{this.loginService.getLoginUser().firstName}}</span>
     <div class="now-playing-art">
-      <img class="now-playing-image" [src]="this.sidebarService.currentTrack?.playlistArtwork">
+      <img class="now-playing-image" [src]="this.sidebarService.getPlaylistArtwork()">
     </div>
-   
-      <span  class="podcast-title sidebar-text">{{this.sidebarService.currentTrack?.playlistPodcastTitle}}</span><br>
-      <span  class="episode-title sidebar-text">{{this.sidebarService.currentTrack?.playlistEpisodeTitle}}</span>
+   <div class="now-playing-info">
+      <span  class="podcast-title sidebar-text">{{this.sidebarService.getPlaylistPodcastTitle()}}</span><br>
+      <span  class="episode-title sidebar-text">{{this.sidebarService.getPlaylistEpisodeTitle()}}</span>
+    </div>
   
   
  
     
-
+<div class="audio-controls">
     <i class="material-icons" (click)="this.sidebarService.playPreviousSong()">skip_previous</i>
     <i class="material-icons" (click)="this.sidebarService.rewindTrack()">replay_30</i>
     <i class="material-icons" (click)="playAudio()" *ngIf="this.sidebarService.audio.paused">play_circle_outline</i>
     <i class="material-icons" (click)="pauseAudio()" *ngIf="!this.sidebarService.audio.paused">pause_circle_outline</i>
     <i class="material-icons" (click)="this.sidebarService.fastForwardTrack()">forward_30</i>
     <i class="material-icons" (click)="this.sidebarService.playNextSong()">skip_next</i>
+  </div>
 
-    <p class="sidebar-text">{{this.sidebarService.getCurrentTimeHour()}}:{{this.sidebarService.getCurrentTimeMinute()}}:{{this.sidebarService.getCurrentTimeSecond()}}--------{{this.sidebarService.getDurationHour()}}:{{this.sidebarService.getDurationMinute()}}:{{this.sidebarService.getDurationSecond()}}</p>
-    <mat-slider min="0" [max]="this.sidebarService.audio.duration" step="1" [(ngModel)]="this.sidebarService.audio.currentTime"></mat-slider>
+
+  <mat-slider class="song-progress" min="0" [max]="this.sidebarService.audio.duration" step="1" [(ngModel)]="this.sidebarService.audio.currentTime"></mat-slider>
+
+
+<div class="song-time">
+    <span class="song-current-time sidebar-text">
+        {{this.sidebarService.getCurrentTimeHour()}}:{{this.sidebarService.getCurrentTimeMinute()}}:{{this.sidebarService.getCurrentTimeSecond()}}
+    </span>
+    <span class="song-duration sidebar-text">
+        {{this.sidebarService.getDurationHour()}}:{{this.sidebarService.getDurationMinute()}}:{{this.sidebarService.getDurationSecond()}}
+    </span>
+  </div>
+    
+
+
+    <!-- </mat-slider> -->
     <label class="sidebar-text" for="volume">Volume</label>
     <mat-slider min="0" max="1.0" step="0.1" value="0.5" [(ngModel)]="this.sidebarService.audio.volume"></mat-slider>
     <button (click)="listenHistory()">Play History</button>

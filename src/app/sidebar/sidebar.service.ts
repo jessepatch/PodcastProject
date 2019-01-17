@@ -100,6 +100,36 @@ export class SidebarService{
     this.audio.currentTime = this.audio.currentTime + 30;
   }
 
+  public getPlaylistArtwork() {
+    let x = 'https://ya-webdesign.com/images250_/podcast-icon-png-1.png';
+    if(this.currentTrack != null) {
+      x = this.currentTrack.playlistArtwork;
+    }
+    return x;
+  }
+
+  public setCurrentTime(value:number) {
+    console.log(value);
+    console.log(value * this.audio.duration);
+    this.audio.currentTime = value * this.audio.duration;
+  }
+
+  public getPlaylistPodcastTitle() {
+    let x = 'Horizon Pod';
+    if (this.currentTrack != null) {
+      x = this.currentTrack.playlistPodcastTitle;
+    }
+    return x;
+  }
+
+  public getPlaylistEpisodeTitle() {
+    let x = 'Web Podcast App';
+    if (this.currentTrack != null) {
+      x = this.currentTrack.playlistEpisodeTitle;
+    }
+    return x;
+  }
+
   // public saveTimeListened(timeListened:TimeListened) {
   //   return this.http.post('http://localhost:8080/saveTimeListened', timeListened)
   // }

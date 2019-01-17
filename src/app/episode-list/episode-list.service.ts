@@ -9,13 +9,14 @@ import { EpisodeDetailsService } from '../episode-details/episode-details.servic
 import { PodcastEpisode, RssFeed } from '../podcast/podcastEpisode';
 import { PlaylistTrack } from '../podcast/PlaylistTrack';
 import { EpisodeListPlusListened } from '../podcast/EpisodeListPlusListened';
+import { HomeService } from '../home/home.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EpisodeListService {
 
-  constructor(private http:HttpClient, private loginService:LoginService, private searchResultsService:SearchResultsService, private sidebarService:SidebarService) { }
+  constructor(private http:HttpClient, private loginService:LoginService, private searchResultsService:SearchResultsService, private sidebarService:SidebarService, private homeService:HomeService) { }
 
   episodeListPlusListened:EpisodeListPlusListened;
   nowPlaying:string = null;
@@ -23,6 +24,7 @@ export class EpisodeListService {
   episodeTitle:string;
   listenedPodcasts:PodcastEpisode[];
   rssfeed:RssFeed;
+  index:number;
 
   public loadAudio(podcastEpisode:PodcastEpisode) {
     console.log("Step 2: load audio in episodeList service");
@@ -47,6 +49,20 @@ export class EpisodeListService {
 
   public unsubscribe(id:string):Observable<any> {
     return this.http.post('http://localhost:8080/unsubscribe', id);
+  }
+
+  public receiveEmailNotification(podcastEpisode:PodcastEpisode):Observable<any> {
+    let notificationPodcast = {};
+    notificationPodcast['mostRecentEpisode'] = podcastEpisode.title;
+    notificationPodcast['email'] = this.loginService.getLoginUser().email;
+    notificationPodcast['collectionName'] = this.podcast.collectionName;
+    notificationPodcast['feedUrl'] = this.podcast.feedUrl;
+    console.log('notificationPodcast', notificationPodcast);
+    return this.http.post('http://localhost:8080/receiveNotification', notificationPodcast);
+  }
+
+  public stopReceivingEmailNotification():Observable<any> {
+    return this.http.post('http://localhost:8080/stopReceivingNotification', this.homeService.notificationPodcasts[this.index].id);
   }
 
   public markListened(podcastEpisode:PodcastEpisode):Observable<any> {
