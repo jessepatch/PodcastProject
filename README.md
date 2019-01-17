@@ -1,4 +1,5 @@
 # PodcastProject
+This website allows you to search, listen, subscribe to nearly any podcast out there. After you make an account you can also keep track of what you've listened to and sign up for email notification when a new episode publishes.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.0.
 
