@@ -13,8 +13,4 @@ export class SignupService {
   public signupUser(user:User):Observable<any> {
     return this.http.post('http://localhost:8080/signup', user)
   }
-
-  public test(user:User):Observable<any> {
-    return this.http.post('http://localhost:8080/test', user);
-  }
 }

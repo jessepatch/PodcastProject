@@ -2,6 +2,9 @@
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-sm-3 col-md-2 mr-0" [routerLink]="['home']">Horizon Pod</a>
   <ul class="nav justify-content-end">
+      <li class="nav-item">
+    <span *ngIf="this.loginService.getLoginUser() != null" class="name sidebar-text">Welcome, {{this.loginService.getLoginUser().firstName}}</span>
+  </li>
     <li class="nav-item">
       <a class="nav-link active" [routerLink]="['home']">Home</a>
     </li>

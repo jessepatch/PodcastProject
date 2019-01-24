@@ -1,9 +1,17 @@
 <section class="sidebar-right">
   
-  <span *ngIf="this.loginService.getLoginUser() != null" class="name sidebar-text">Welcome, {{this.loginService.getLoginUser().firstName}}</span>
-    <div class="now-playing-art">
+ 
+  <div class="art-and-volume">  
+  <div class="now-playing-art">
       <img class="now-playing-image" [src]="this.sidebarService.getPlaylistArtwork()">
     </div>
+    <div class="volume-controls">
+    <i class="material-icons volume-icon volume-top">volume_up</i>
+    <mat-slider vertical min="0" max="1.0" step="0.1" value="0.5" [(ngModel)]="this.sidebarService.audio.volume"></mat-slider>
+    <i class="material-icons volume-icon">volume_down</i>
+      </div>
+    </div>
+
    <div class="now-playing-info">
       <span  class="podcast-title sidebar-text">{{this.sidebarService.getPlaylistPodcastTitle()}}</span><br>
       <span  class="episode-title sidebar-text">{{this.sidebarService.getPlaylistEpisodeTitle()}}</span>
@@ -37,9 +45,7 @@
 
 
     <!-- </mat-slider> -->
-    <label class="sidebar-text" for="volume">Volume</label>
-    <mat-slider min="0" max="1.0" step="0.1" value="0.5" [(ngModel)]="this.sidebarService.audio.volume"></mat-slider>
-    <button (click)="listenHistory()">Play History</button>
+    <!-- <button (click)="listenHistory()">Play History</button> -->
     
     <div class="playlist">
       <h5 class="sidebar-text">Playlist</h5>
