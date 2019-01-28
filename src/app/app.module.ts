@@ -19,6 +19,7 @@ import { HomeComponent } from './home/home.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { EpisodeDetailsComponent } from './episode-details/episode-details.component';
 import { MaterialModule } from '@blox/material';
+import { AccountCreatedComponent } from './account-created/account-created.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { MaterialModule } from '@blox/material';
     EpisodeListComponent,
     LoginComponent,
     HomeComponent,
-    EpisodeDetailsComponent
+    EpisodeDetailsComponent,
+    AccountCreatedComponent
   ],
   imports: [
     BrowserModule,

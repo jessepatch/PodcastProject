@@ -6,6 +6,7 @@ import { EpisodeListComponent } from './episode-list/episode-list.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { EpisodeDetailsComponent } from './episode-details/episode-details.component';
+import { AccountCreatedComponent } from './account-created/account-created.component';
 
 const routes: Routes = [
   {path:'',component:SignupComponent},
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path:'episodelist', component:EpisodeListComponent},
   {path:'login', component:LoginComponent},
   {path:'home', component:HomeComponent},
-  {path:'episodedetails', component:EpisodeDetailsComponent}
+  {path:'episodedetails', component:EpisodeDetailsComponent},
+  {path:'accountcreated', component:AccountCreatedComponent}
 ];
 
 @NgModule({

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user/User';
 import { SignupService } from './signup.service';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'signup',
@@ -11,7 +13,7 @@ export class SignupComponent implements OnInit {
 
   user:User = new User();
 
-  constructor(private signupService:SignupService) { }
+  constructor(private signupService:SignupService, private router:Router) { }
 
   ngOnInit() {
   }
@@ -21,6 +23,7 @@ export class SignupComponent implements OnInit {
       data => {
         console.log("signup successful");
         console.log(this.user);
+        this.router.navigateByUrl('/accountcreated');
             },
       error => {
         console.log("signup unsuccessful");
