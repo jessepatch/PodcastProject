@@ -1,4 +1,4 @@
-<h1>Welcome to your home page</h1>
+<h1 class="name">{{this.loginService.getLoginUser().firstName}}'s home page</h1>
 
 <div class="row">
     <div class="col-sm-6 maxwidth450px" *ngFor="let podcast of this.homeService.subscribedPodcasts, let i = index">

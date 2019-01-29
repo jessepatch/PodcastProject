@@ -56,6 +56,9 @@ console.log("list", this.episodelistservice.rssfeed.rss.channel.item);
   }
 
   episodeList:PodcastEpisode[] = this.episodelistservice.rssfeed.rss.channel.item;
+  podcastDescription:string = this.episodelistservice.rssfeed.rss.channel.description
+  .replace(/\<p\>/g, ' ')
+  .replace(/\<\/p\>/g, ' ');
   podcast:Podcast = this.searchresultsService.podcast;
 
   subscribed:boolean;

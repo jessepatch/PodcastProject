@@ -1,14 +1,38 @@
+<h1>{{podcast.collectionName}}</h1>
+<div class="pic-and-description">
+<img class="episode-list-image" [src]="podcast.artworkUrl600" [alt]="podcast.collectionName">
+<p>{{podcastDescription}}</p>
+</div>
 <button mat-raised-button *ngIf="!subscribed && loginService.getLoginUser() != null" color="primary" (click)="subscribe()">Subscribe</button>
 <button mat-raised-button *ngIf="subscribed" color="primary" (click)="unsubscribe()">Unsubscribe</button>
-<button mat-rasied-button *ngIf="subscribed && !receivingEmailNotification" color="primary" (click)="receiveEmailNotification()">Receive Email Notification</button>
-<button mat-raised-button *ngIf="subscribed && receivingEmailNotification" color="primary" (click)="stopReceivingEmailNotification()">Stop Receiving Email Notifications</button>
-<button mat-raised-button *ngIf="loginService.getLoginUser() == null" color="primary" [routerLink]="['']">Make an account to subscribe</button>
-<div class="episode-list" *ngFor="let PodcastEpisode of episodeList, let i = index">
-<p (click)="loadAudio(i)">
-  {{PodcastEpisode.title}}
-</p>
-<button (click)="episodeDetails(i)">Details</button>
-<button (click)="addToPlaylist(i)">Add to Playlist</button>
-<button *ngIf="!PodcastEpisode.listened && this.loginService.getLoginUser() != null" (click)="markListened(i)">Mark Listened</button>
-<button *ngIf="PodcastEpisode.listened && this.loginService.getLoginUser() != null" (click)="unmarkListened(i)">Unmark Listened</button>
-</div>
+<button mat-rasied-button *ngIf="subscribed && !receivingEmailNotification" color="primary" (click)="receiveEmailNotification()">Receive
+  Email Notification</button>
+<button mat-raised-button *ngIf="subscribed && receivingEmailNotification" color="primary" (click)="stopReceivingEmailNotification()">Stop
+  Receiving Email Notifications</button>
+<button mat-raised-button *ngIf="loginService.getLoginUser() == null" color="primary" [routerLink]="['']">Make an
+  account to subscribe</button>
+<table>
+  <tr>
+    <th>Episode Title</th>
+    <th class="buttons"> </th>
+  </tr>
+
+  <tr class="episode-list" *ngFor="let PodcastEpisode of episodeList, let i = index">
+    <td (click)="loadAudio(i)">
+      {{PodcastEpisode.title}}
+    </td>
+    <td>
+      <i class="material-icons" (click)="episodeDetails(i)">
+        info
+      </i>
+      <i class="material-icons" (click)="addToPlaylist(i)">
+        playlist_add
+      </i>
+      <i class="material-icons" *ngIf="!PodcastEpisode.listened && this.loginService.getLoginUser() != null" (click)="markListened(i)">
+        check_box_outline_blank
+      </i>
+      <i class="material-icons" *ngIf="PodcastEpisode.listened && this.loginService.getLoginUser() != null" (click)="unmarkListened(i)">
+        check_box
+      </i>
+    </td>
+</table>

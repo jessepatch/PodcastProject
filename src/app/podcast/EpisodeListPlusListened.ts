@@ -12,6 +12,7 @@ export class PodcastEpisode {
     id:string;
     listened:boolean;
     episodeNumber:number;
+    normalDate:string = this.pubDate.substring(0,16);
 }
 
 
