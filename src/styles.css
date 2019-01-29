@@ -14,6 +14,9 @@
     box-shadow: -8px 0 12px -4px rgba(0,0,0,.3);
     height: 100%;
 }
+.login-text {
+    text-align: center;
+}
 
 .sidebar-text{
     color:white;
@@ -43,11 +46,15 @@
     width:48px;
 }
 
+.mat-form-field-flex {
+    width:800px;
+}
 .searchbar {
-    margin-top:40px;
+    margin-top:30px;
     background-color:white;
     padding-left: 30px;
     padding-top:18px;
+    width: 800px;
 }
 
 .signup {
@@ -57,6 +64,13 @@
 .example-container {
     display: flex;
     flex-direction: column;
+    width:500px;
+    text-align: center;
+    margin-left:25%;
+    border-style:solid;
+    border-width: 2px;
+    border-color:grey;
+    padding:10px;
 }
   
 .example-container > * {
@@ -74,7 +88,12 @@
 .img-search-result {
     width: 198px !important;
     height: 198px !important;
-
+    border-top: #b1aaaa;
+    border-width: 1px;
+    border-style: solid;
+    border-left: none;
+    border-bottom: none;
+    border-right: none;
 }
 
 .inline-card {
@@ -131,6 +150,12 @@ audio {
 .playlist {
     overflow-y:scroll;
     height:185px;
+    border-style:solid;
+    border-color: grey;
+    border-left:none;
+    border-right:none;
+    border-bottom:none;
+
 }
 
 .material-icons {

@@ -22,16 +22,16 @@
       {{PodcastEpisode.title}}
     </td>
     <td>
-      <i class="material-icons" (click)="episodeDetails(i)">
+      <div matTooltip="View Episode Details" class="material-icons" (click)="episodeDetails(i)">
         info
-      </i>
-      <i class="material-icons" (click)="addToPlaylist(i)">
+      </div>
+      <i matTooltip="Add to Playlist" class="material-icons" (click)="addToPlaylist(i)">
         playlist_add
       </i>
-      <i class="material-icons" *ngIf="!PodcastEpisode.listened && this.loginService.getLoginUser() != null" (click)="markListened(i)">
+      <i matTooltip="Mark Listened" class="material-icons" *ngIf="!PodcastEpisode.listened && this.loginService.getLoginUser() != null" (click)="markListened(i)">
         check_box_outline_blank
       </i>
-      <i class="material-icons" *ngIf="PodcastEpisode.listened && this.loginService.getLoginUser() != null" (click)="unmarkListened(i)">
+      <i matTooltip="Unmark Listened" class="material-icons" *ngIf="PodcastEpisode.listened && this.loginService.getLoginUser() != null" (click)="unmarkListened(i)">
         check_box
       </i>
     </td>

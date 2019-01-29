@@ -20,6 +20,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { EpisodeDetailsComponent } from './episode-details/episode-details.component';
 import { MaterialModule } from '@blox/material';
 import { AccountCreatedComponent } from './account-created/account-created.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 
 
 @NgModule({
@@ -46,7 +48,8 @@ import { AccountCreatedComponent } from './account-created/account-created.compo
     FormsModule,
     MatCardModule,
     MatSliderModule,
-    MaterialModule
+    MaterialModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
