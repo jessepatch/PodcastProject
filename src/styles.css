@@ -72,8 +72,9 @@
 }
 
 .img-search-result {
-    width: 200px !important;
-    height: 200px !important;
+    width: 198px !important;
+    height: 198px !important;
+
 }
 
 .inline-card {
@@ -99,6 +100,8 @@
 
 .card-body {
     padding:0px !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 html {
@@ -218,6 +221,10 @@ td .material-icons {
 
   i {
       margin-right:2px;
+  }
+
+  .signup-form {
+      text-align:center;
   }
 /*
 .card {
