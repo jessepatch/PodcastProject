@@ -115,7 +115,7 @@ export class SidebarService{
   }
 
   public getPlaylistPodcastTitle() {
-    let x = 'Horizon Pod';
+    let x = 'The PodPatch';
     if (this.currentTrack != null) {
       x = this.currentTrack.playlistPodcastTitle;
     }

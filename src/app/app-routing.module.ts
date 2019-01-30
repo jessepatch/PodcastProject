@@ -9,10 +9,10 @@ import { EpisodeDetailsComponent } from './episode-details/episode-details.compo
 import { AccountCreatedComponent } from './account-created/account-created.component';
 
 const routes: Routes = [
-  {path:'',component:SignupComponent},
+  {path:'signup',component:SignupComponent},
   {path:'searchresults', component:SearchResultsComponent},
   {path:'episodelist', component:EpisodeListComponent},
-  {path:'login', component:LoginComponent},
+  {path:'', component:LoginComponent},
   {path:'home', component:HomeComponent},
   {path:'episodedetails', component:EpisodeDetailsComponent},
   {path:'accountcreated', component:AccountCreatedComponent}

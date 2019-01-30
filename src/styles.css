@@ -1,5 +1,19 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+.logo-container {
+    display:-webkit-box;
+}
+.logo {
+    width:300px;
+    margin-left: 50px;
+}
+.welcome-text,.welcome-message {
+    text-align: left;
+}
+
+.searchbar-form {
+    width:900px;
+}
 .sidebar-right {
     background-color: #2f3d44;
     position: fixed;
