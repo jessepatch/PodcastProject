@@ -5,7 +5,7 @@
 </div>
 <button mat-raised-button *ngIf="!subscribed && loginService.getLoginUser() != null" color="primary" (click)="subscribe()">Subscribe</button>
 <button mat-raised-button *ngIf="subscribed" color="primary" (click)="unsubscribe()">Unsubscribe</button>
-<button mat-rasied-button *ngIf="subscribed && !receivingEmailNotification" color="primary" (click)="receiveEmailNotification()">Receive
+<button mat-raised-button *ngIf="subscribed && !receivingEmailNotification" color="primary" (click)="receiveEmailNotification()">Receive
   Email Notification</button>
 <button mat-raised-button *ngIf="subscribed && receivingEmailNotification" color="primary" (click)="stopReceivingEmailNotification()">Stop
   Receiving Email Notifications</button>
