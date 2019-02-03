@@ -1,5 +1,12 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+
+.logout {
+    color:darkblue;
+}
+.account-created-text {
+    text-align: center;
+}
 .logo-container {
     display:-webkit-box;
 }

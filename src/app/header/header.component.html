@@ -12,7 +12,7 @@
       <a class="nav-link" *ngIf="loginService.getLoginUser() == null" [routerLink]="['']">Log in</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" *ngIf="loginService.getLoginUser() != null" (click)="logout()">Log Out</a>
+      <a class="nav-link logout" *ngIf="loginService.getLoginUser() != null" (click)="logout()">Log Out</a>
     </li>
   </ul>
 </nav>
